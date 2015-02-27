@@ -3,3 +3,6 @@
 # unmask on your machine to enable our kernelsource dummy package
 # to fully manage them yourself.
 =virtual/linux-sources-99
+
+# git-versions
+=games-strategy/openage-9999
