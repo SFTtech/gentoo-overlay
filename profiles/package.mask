@@ -7,3 +7,4 @@
 # git-versions
 =games-strategy/openage-9999
 =games-server/openage-masterserver-9999
+=media-libs/daala-9999
