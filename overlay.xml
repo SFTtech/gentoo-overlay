@@ -5,7 +5,7 @@
 		<name>sft</name>
 		<description>SFT Technologies gentoo overlay</description>
 		<homepage>https://github.com/SFTtech/gentoo-overlay</homepage>
-		<owner type="project">
+		<owner type="person">
 			<email>jj@sft.mx</email>
 			<name>Jonas Jelten</name>
 		</owner>
