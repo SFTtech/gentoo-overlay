@@ -27,7 +27,9 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 REQUIRED_USE=""
 
-RDEPEND=""
+RDEPEND="
+dev-python/ply
+"
 DEPEND="${RDEPEND}"
 
 src_prepare() {
