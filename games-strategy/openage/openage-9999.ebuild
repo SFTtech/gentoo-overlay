@@ -1,7 +1,8 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 2014-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
+PYTHON_COMPAT=( python3_{3,4} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
@@ -9,7 +10,7 @@ if [[ ${PV} == *9999 ]] ; then
 fi
 
 CMAKE_MIN_VERSION=2.8.10
-inherit cmake-utils games ${SCM}
+inherit cmake-utils games python-any-r1 ${SCM}
 
 DESCRIPTION="free as in freedom RTS engine for age of empires II TC"
 HOMEPAGE="http://openage.sft.mx https://github.com/SFTtech/openage"
@@ -28,7 +29,6 @@ IUSE="debug"
 REQUIRED_USE=""
 
 RDEPEND="
->=dev-lang/python-3.3:=
 dev-python/pillow
 dev-python/numpy
 virtual/opengl
