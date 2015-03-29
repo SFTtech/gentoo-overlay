@@ -9,7 +9,7 @@ if [[ ${PV} == *9999 ]] ; then
 	EGIT_REPO_URI="git://github.com/SFTtech/openage.git https://github.com/SFTtech/openage.git"
 fi
 
-CMAKE_MIN_VERSION=2.8.10
+CMAKE_MIN_VERSION=2.8.8
 inherit cmake-utils games python-any-r1 ${SCM}
 
 DESCRIPTION="free as in freedom RTS engine for age of empires II TC"
@@ -32,7 +32,7 @@ RDEPEND="
 dev-python/pillow
 dev-python/numpy
 virtual/opengl
-media-libs/glew:=
+media-libs/libepoxy:=
 media-libs/ftgl:=
 media-fonts/dejavu
 media-libs/freetype:2=[X]
