@@ -12,7 +12,7 @@ fi
 inherit autotools-multilib ${SCM}
 
 MY_P=${P/_/-}
-DESCRIPTION="Open versatile video codec designed ultra-high performance video compression"
+DESCRIPTION="Open versatile video codec designed for ultra-high performance video compression"
 HOMEPAGE="https://www.xiph.org/daala/"
 
 if [[ ${PV} == *9999 ]] ; then
@@ -23,7 +23,7 @@ fi
 
 LICENSE="BSD-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd"
+KEYWORDS=""
 IUSE="doc static-libs"
 
 DEPEND="doc? ( app-doc/doxygen )"
