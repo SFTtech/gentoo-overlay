@@ -24,14 +24,17 @@ fi
 
 LICENSE="AGPL-3"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd"
+KEYWORDS=""
 IUSE=""
 
 DEPEND="
+dev-haskell/aeson:=[profile?]
+dev-haskell/hdbc-postgresql:=[profile?]
+dev-haskell/hdbc:=[profile?]
 dev-haskell/network:=[profile?]
 dev-haskell/parsec:=[profile?]
-dev-haskell/hdbc:=[profile?]
-dev-haskell/hdbc-postgresql:=[profile?]
+dev-haskell/text:=[profile?]
+dev-haskell/utf8-string:=[profile?]
 "
 RDEPEND="${DEPEND}"
 
