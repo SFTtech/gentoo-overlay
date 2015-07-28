@@ -11,7 +11,7 @@ DESCRIPTION="man pages for the c++ standard library"
 HOMEPAGE="https://github.com/aitjcize/cppman"
 SRC_URI="https://pypi.python.org/packages/source/c/${PN}/${P}.tar.gz"
 
-LICENSE="GPL3"
+LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
