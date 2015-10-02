@@ -1,0 +1,12 @@
+[Unit]
+Description=suricata IDS
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/suricata -v -c /etc/suricata/suricata.yaml --af-packet
+Restart=on-abnormal
+RestartForceExitStatus=SIGSEGV SEGV SIGILL SIGKILL
+
+[Install]
+WantedBy=multi-user.target

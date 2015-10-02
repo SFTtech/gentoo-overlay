@@ -1,0 +1,11 @@
+--- a/src/output-json.h	2015-10-02 00:21:03.547874917 +0200
++++ b/src/output-json.h	2015-10-02 00:20:39.691358587 +0200
+@@ -28,6 +28,8 @@
+ 
+ #ifdef HAVE_LIBJANSSON
+ 
++#include <jansson.h>
++
+ #include "suricata-common.h"
+ #include "util-buffer.h"
+ #include "util-logopenfile.h"
