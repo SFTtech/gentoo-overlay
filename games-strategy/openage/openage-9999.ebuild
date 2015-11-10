@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
-PYTHON_COMPAT=( python3_4 )
+PYTHON_COMPAT=( python3_{4,5} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
@@ -33,7 +33,7 @@ dev-python/pillow
 dev-python/numpy
 virtual/opengl
 media-libs/libepoxy:=
-media-libs/ftgl:=
+media-libs/harfbuzz:=
 media-fonts/dejavu
 media-libs/freetype:2=[X]
 media-libs/fontconfig:=
