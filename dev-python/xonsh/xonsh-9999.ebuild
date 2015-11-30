@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
-PYTHON_COMPAT=( python3_4 )
+PYTHON_COMPAT=( python3_{4,5} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
