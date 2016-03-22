@@ -6,7 +6,7 @@ PYTHON_COMPAT=( python3_{4,5} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
-	EGIT_REPO_URI="git://github.com/SFTtech/openage.git https://github.com/SFTtech/openage.git"
+	EGIT_REPO_URI="git://github.com/SFTtech/${PN}.git https://github.com/SFTtech/${PN}.git"
 fi
 
 CMAKE_MIN_VERSION=3.0.0
