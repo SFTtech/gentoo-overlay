@@ -29,10 +29,13 @@ IUSE=""
 
 DEPEND="
 dev-haskell/aeson:=[profile?]
+dev-haskell/bcrypt:=[profile?]
+dev-haskell/configurator:=[profile?]
 dev-haskell/hdbc-postgresql:=[profile?]
 dev-haskell/hdbc:=[profile?]
 dev-haskell/network:=[profile?]
 dev-haskell/parsec:=[profile?]
+dev-haskell/persistent-postgresql:=[profile?]
 dev-haskell/text:=[profile?]
 dev-haskell/utf8-string:=[profile?]
 "
