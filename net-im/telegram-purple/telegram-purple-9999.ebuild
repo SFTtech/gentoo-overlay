@@ -20,6 +20,8 @@ if [[ ${PV} == *9999 ]]; then
 	SRC_URI=""
 	KEYWORDS=""
 else
+	# TODO!
+	# git submodule packaging really is a mess
 	SRC_URI="
 		https://github.com/majn/${PN}/archive/v${MY_PV}.tar.gz -> ${P}.tar.gz
 		https://github.com/majn/tgl/archive/master.tar.gz -> tgl_master_${PV}.tar.gz
@@ -46,20 +48,8 @@ S=${WORKDIR}/${MY_P}
 src_unpack() {
 	if [[ ${PV} == *9999 ]]; then
 		git-r3_src_unpack
-
-		EGIT_REPO_URI="https://github.com/majn/tgl.git"
-		cd ${S}
-		unset ${PN}_LIVE_REPO
-		EGIT_CHECKOUT_DIR=tgl
-		git-r3_src_fetch
-		git-r3_checkout
-
-		EGIT_REPO_URI="https://github.com/vysheng/tl-parser"
-		cd tgl
-		unset ${PN}_LIVE_REPO
-		EGIT_CHECKOUT_DIR=tl-parser
-		git-r3_src_fetch
-		git-r3_checkout
+		cd $EGIT_SOURCEDIR
+		git submodule update --init --recursive
 	else
 		unpack ${P}.tar.gz
 		cd ${S}
@@ -74,16 +64,13 @@ src_unpack() {
 	fi
 }
 
-src_configure() {
-	pushd tgl
-	econf
-	popd
-	econf \
-		$(use_enable webp libwebp)
+src_prepare() {
+	sed -i -e 's/ -Werror//' $(find . -name Makefile.in) || die
 }
 
-src_compile() {
-	emake || die "emake failed"
+src_configure() {
+	econf \
+		$(use_enable webp libwebp)
 }
 
 src_install() {
