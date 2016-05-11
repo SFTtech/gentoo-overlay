@@ -1,7 +1,7 @@
-# Copyright 2015-2015 Gentoo Foundation
+# Copyright 2015-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 PYTHON_COMPAT=( python3_{4,5} )
 
 if [[ ${PV} == *9999 ]] ; then
@@ -24,13 +24,18 @@ fi
 LICENSE="BSD-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd"
-IUSE="debug"
+IUSE="test"
 REQUIRED_USE=""
 
 RDEPEND="
-dev-python/ply
+	dev-python/ply[${PYTHON_USEDEP}]
 "
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	dev-python/setuptools[${PYTHON_USEDEP}]
+	test? (
+		dev-python/nose[${PYTHON_USEDEP}]
+	)
+"
 
 src_prepare() {
 	# packaged patches:
@@ -38,5 +43,9 @@ src_prepare() {
 	#)
 
 	# user patches:
-	epatch_user
+	eapply_user
+}
+
+python_test() {
+	nosetests --verbose || die
 }
