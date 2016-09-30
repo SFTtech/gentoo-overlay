@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python2_7 )
 inherit base qmake-utils python-single-r1
 
 DESCRIPTION="call graph viewer for callgrind"
-HOMEPAGE="http://kcachegrind.sourceforge.net/"
+HOMEPAGE="https://kcachegrind.github.io/"
 SLOT="0"
 
 BUNDLENAME=kcachegrind
