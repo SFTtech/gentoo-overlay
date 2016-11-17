@@ -1,2 +1,0 @@
-# suricata runtime directory
-d /var/run/suricata 0775 suricata suricata - -
