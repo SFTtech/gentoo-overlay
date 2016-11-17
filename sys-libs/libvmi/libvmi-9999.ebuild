@@ -9,7 +9,7 @@ if [[ ${PV} == *9999 ]] ; then
 	EGIT_REPO_URI="git://github.com/libvmi/libvmi.git https://github.com/libvmi/libvmi.git"
 fi
 
-inherit autotools ${SCM}
+inherit autotools flag-o-matic ${SCM}
 
 MY_PV="${PV/_/-}"
 
@@ -48,6 +48,8 @@ kvm? (
 RDEPEND="${DEPEND}"
 
 src_prepare() {
+	append-flags -Wno-error
+
 	_elibtoolize
 	eaclocal
 	eautoheader
