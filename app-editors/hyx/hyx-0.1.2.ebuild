@@ -15,10 +15,6 @@ IUSE=""
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-# TODO: as upstream hardcodes the compiler invocation,
-#       in order to customize flags, nostrip/strip etc,
-#       we have to do it manually.
-
 src_install() {
 	dobin hyx
 }
