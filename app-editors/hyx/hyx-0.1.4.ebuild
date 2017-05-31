@@ -4,8 +4,8 @@
 EAPI=6
 
 DESCRIPTION="a minimalistic console hex editor with vim-like controls"
-HOMEPAGE="https://home.in.tum.de/~panny/"
-SRC_URI="https://home.in.tum.de/~panny/f/${P}.tar.xz"
+HOMEPAGE="https://yx7.cc/code/"
+SRC_URI="https://yx7.cc/code/hyx/${P}.tar.xz"
 
 LICENSE="MIT"
 SLOT="0"
