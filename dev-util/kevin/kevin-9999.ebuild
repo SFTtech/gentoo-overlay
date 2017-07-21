@@ -4,7 +4,7 @@
 
 EAPI=5
 
-PYTHON_COMPAT=( python3_5 )
+PYTHON_COMPAT=( python3_6 )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
@@ -19,17 +19,18 @@ SRC_URI=""
 
 if [[ ${PV} == *9999 ]] ; then
 	SRC_URI=""
+	KEYWORDS=""
 else
 	SRC_URI="https://github.com/SFTtech/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd"
 fi
 
 LICENSE="AGPL-3"
 SLOT="0"
-KEYWORDS=""
 IUSE=""
 
 DEPEND="
-dev-python/requests
-www-servers/tornado
+dev-python/requests[${PYTHON_USEDEP}]
+www-servers/tornado[${PYTHON_USEDEP}]
 "
 RDEPEND="${DEPEND}"
