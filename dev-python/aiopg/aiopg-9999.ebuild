@@ -32,12 +32,3 @@ RDEPEND="
 dev-python/psycopg
 "
 DEPEND="${RDEPEND}"
-
-src_prepare() {
-	# packaged patches:
-	#PATCHES=(
-	#)
-
-	# user patches:
-	eapply_user
-}
