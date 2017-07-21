@@ -1,0 +1,14 @@
+diff --git a/setup.py b/setup.py
+index 2d83fb5..3a0a99c 100755
+--- a/setup.py
++++ b/setup.py
+@@ -51,7 +51,8 @@ def check_install():
+             pass
+ 
+ 
+-check_install()
++# skip installation check to avoid sandbox violations
++# check_install()
+ 
+ 
+ requirements = [
