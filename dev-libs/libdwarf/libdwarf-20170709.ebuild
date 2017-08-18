@@ -1,6 +1,5 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI="6"
 
@@ -20,9 +19,6 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/dwarf-${PV}"
 
-# dirty hack, since I can't properly patch buildsystem
-QA_PREBUILT="*/${PN}.so"
-
 src_configure() {
 	econf --enable-shared
 }
@@ -30,7 +26,7 @@ src_configure() {
 src_install() {
 	pushd libdwarf
 	dolib.a libdwarf.a || die
-	dolib.so libdwarf.so || die
+	dolib.so libdwarf.so.1 || die
 
 	insinto /usr/include/libdwarf/
 	doins libdwarf.h || die
