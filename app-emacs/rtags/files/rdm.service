@@ -1,0 +1,8 @@
+[Unit]
+Description=RTags daemon
+
+[Service]
+ExecStart=/usr/bin/env rdm --verbose --inactivity-timeout 300 --log-flush
+
+[Install]
+WantedBy=default.target
