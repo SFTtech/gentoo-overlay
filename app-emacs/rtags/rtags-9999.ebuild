@@ -38,7 +38,6 @@ DEPEND="${RDEPEND}
 SITEFILE="50${PN}-gentoo.el"
 
 PATCHES=(
-	${FILESDIR}/fix-rct-libdir.patch
 	# this allows to disable emacs usage and bash-completion installation
 	${FILESDIR}/optional-components.patch
 )
