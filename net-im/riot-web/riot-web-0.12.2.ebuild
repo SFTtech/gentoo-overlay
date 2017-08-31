@@ -50,14 +50,14 @@ QA_PREBUILT="
 src_prepare() {
 	default
 
-	npm install
+	npm install --cache "${S}/npm-cache"
 
 	if [[ ${PV} == "9999" ]]; then
 		pushd ${S}/node_modules/
 		rm -rf matrix-js-sdk
 		git clone https://github.com/matrix-org/matrix-js-sdk --branch develop
 		pushd matrix-js-sdk
-		npm install
+		npm install --cache "${S}/npm-cache"
 		popd
 		popd
 	fi
@@ -67,7 +67,7 @@ src_prepare() {
 		rm -rf matrix-react-sdk
 		git clone https://github.com/matrix-org/matrix-react-sdk --branch develop
 		pushd matrix-react-sdk
-		npm install
+		npm install --cache "${S}/npm-cache"
 		popd
 		popd
 	fi
@@ -76,8 +76,8 @@ src_prepare() {
 src_compile() {
 	cp ${S}/config.sample.json ${S}/config.json
 
-	npm run build
-	npm run install:electron
+	npm run build --cache "${S}/npm-cache"
+	npm run install:electron --cache "${S}/npm-cache"
 
 	if use abi_x86_32; then
 		${S}/node_modules/.bin/build --linux --ia32 --dir
