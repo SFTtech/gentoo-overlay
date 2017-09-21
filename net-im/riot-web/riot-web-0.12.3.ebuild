@@ -50,7 +50,7 @@ QA_PREBUILT="
 src_prepare() {
 	default
 
-	npm install --cache "${S}/npm-cache"
+	npm install --cache "${S}/npm-cache" || die "npm module installation failed"
 
 	if [[ ${PV} == "9999" ]]; then
 		pushd ${S}/node_modules/
@@ -76,13 +76,13 @@ src_prepare() {
 src_compile() {
 	cp ${S}/config.sample.json ${S}/config.json
 
-	npm run build --cache "${S}/npm-cache"
-	npm run install:electron --cache "${S}/npm-cache"
+	npm run build --cache "${S}/npm-cache" || die "build failed"
+	npm run install:electron --cache "${S}/npm-cache" || die "electron install failed"
 
 	if use abi_x86_32; then
-		${S}/node_modules/.bin/build --linux --ia32 --dir
+		${S}/node_modules/.bin/build --linux --ia32 --dir || die "bundling failed"
 	elif use abi_x86_64; then
-		${S}/node_modules/.bin/build --linux --x64 --dir
+		${S}/node_modules/.bin/build --linux --x64 --dir || die "bundling failed"
 	fi
 }
 
