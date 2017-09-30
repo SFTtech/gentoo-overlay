@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python3_{4,5} )
+PYTHON_COMPAT=( python3_{4,5,6} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
@@ -19,7 +19,7 @@ if [[ ${PV} == *9999 ]] ; then
 	KEYWORDS=""
 else
 	SRC_URI="https://github.com/aio-libs/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd"
+	KEYWORDS="~amd64 ~x86"
 fi
 
 
