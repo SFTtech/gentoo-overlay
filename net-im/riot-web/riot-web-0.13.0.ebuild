@@ -31,7 +31,7 @@ REQUIRED_USE="^^ ( abi_x86_32 abi_x86_64 )"
 
 # get dependencies via readelf -a riot-web...
 DEPEND="
-	net-libs/nodejs
+	sys-apps/yarn
 	x11-libs/cairo
 	x11-libs/pango
 	media-libs/fontconfig
@@ -49,15 +49,14 @@ QA_PREBUILT="
 
 src_prepare() {
 	default
-
-	npm install --cache "${S}/npm-cache" || die "npm module installation failed"
+	yarn install || die "yarn module installation failed"
 
 	if [[ ${PV} == "9999" ]]; then
 		pushd ${S}/node_modules/
 		rm -rf matrix-js-sdk
 		git clone https://github.com/matrix-org/matrix-js-sdk --branch develop
 		pushd matrix-js-sdk
-		npm install --cache "${S}/npm-cache"
+		yarn install
 		popd
 		popd
 	fi
@@ -67,7 +66,7 @@ src_prepare() {
 		rm -rf matrix-react-sdk
 		git clone https://github.com/matrix-org/matrix-react-sdk --branch develop
 		pushd matrix-react-sdk
-		npm install --cache "${S}/npm-cache"
+		yarn install
 		popd
 		popd
 	fi
@@ -76,8 +75,8 @@ src_prepare() {
 src_compile() {
 	cp ${S}/config.sample.json ${S}/config.json
 
-	npm run build --cache "${S}/npm-cache" || die "build failed"
-	npm run install:electron --cache "${S}/npm-cache" || die "electron install failed"
+	yarn run build || die "build failed"
+	yarn run install:electron || die "electron install failed"
 
 	if use abi_x86_32; then
 		${S}/node_modules/.bin/build --linux --ia32 --dir || die "bundling failed"
