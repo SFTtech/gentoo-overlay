@@ -6,10 +6,10 @@ PYTHON_COMPAT=( python3_{4,5,6} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
-	EGIT_REPO_URI="git://github.com/SFTtech/${PN}.git https://github.com/SFTtech/${PN}.git"
+	EGIT_REPO_URI="https://github.com/SFTtech/${PN}.git"
 fi
 
-CMAKE_MIN_VERSION=3.1.0
+CMAKE_MIN_VERSION=3.8.0
 inherit cmake-utils python-single-r1 ${SCM}
 
 DESCRIPTION="free as in freedom RTS engine for age of empires II TC"
@@ -20,7 +20,7 @@ if [[ ${PV} == *9999 ]] ; then
 	KEYWORDS=""
 else
 	SRC_URI="https://github.com/SFTtech/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd"
+	KEYWORDS="~amd64 ~x86"
 fi
 
 
@@ -33,6 +33,8 @@ RDEPEND="
 ${PYTHON_DEPS}
 dev-python/pillow[${PYTHON_USEDEP}]
 dev-python/numpy[${PYTHON_USEDEP}]
+dev-python/jinja[${PYTHON_USEDEP}]
+dev-libs/nyan:=
 virtual/opengl
 media-libs/libepoxy:=
 media-libs/harfbuzz:=
@@ -40,9 +42,11 @@ media-fonts/dejavu
 media-libs/freetype:2=[X]
 media-libs/fontconfig:=
 media-libs/libsdl2:=[X,opengl,video]
+media-libs/libogg:=
+media-libs/libpng:=
 media-libs/sdl2-image:=[png]
 media-libs/opusfile:=
-media-sound/opus-tools
+media-libs/opus
 >=dev-qt/qtcore-5.5
 >=dev-qt/qtdeclarative-5.5
 >=dev-qt/qtquickcontrols-5.5
@@ -52,27 +56,9 @@ profiling? ( dev-util/google-perftools )
 DEPEND="${RDEPEND}
 dev-python/cython[${PYTHON_USEDEP}]
 dev-python/pygments[${PYTHON_USEDEP}]
-|| ( >=sys-devel/clang-3.4 >=sys-devel/gcc-4.9 )
+|| ( >=sys-devel/clang-5.0.0 >=sys-devel/gcc-7.0.0 )
 "
 
-# we're utilizing the cmake eclass:
-# https://devmanual.gentoo.org/eclass-reference/cmake-utils.eclass/index.html
-
-BUILD_DIR="${WORKDIR}/${P}_build"
-
-CMAKE_MAKEFILE_GENERATOR="emake"
-
-src_prepare() {
-	# packaged patches:
-	#PATCHES=(
-	#)
-
-	# user patches:
-	epatch_user
-
-	# already includes epatch_user:
-	cmake-utils_src_prepare
-}
 
 src_configure() {
 	local mycmakeargs=(
@@ -84,17 +70,6 @@ src_configure() {
 	cmake-utils_src_configure
 }
 
-src_compile() {
-	cmake-utils_src_compile
-}
-
-src_test() {
-	cmake-utils_src_test
-}
-
-src_install() {
-	cmake-utils_src_install
-}
 
 pkg_postinst() {
 	einfo "To run openage, you need to have the original media files!"
