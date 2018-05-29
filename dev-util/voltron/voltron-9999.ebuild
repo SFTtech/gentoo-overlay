@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python3_{3,4,5,6} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
-	EGIT_REPO_URI="git://github.com/snare/${PN}.git https://github.com/snare/${PN}.git"
+	EGIT_REPO_URI="https://github.com/snare/${PN}.git"
 fi
 
 inherit distutils-r1 ${SCM}
