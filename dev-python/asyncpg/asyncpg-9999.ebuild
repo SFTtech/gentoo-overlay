@@ -28,7 +28,9 @@ SLOT="0"
 IUSE="debug"
 REQUIRED_USE=""
 
-RDEPEND=""
+RDEPEND="
+dev-db/postgresql
+"
 DEPEND="
 dev-python/cython
 ${RDEPEND}"
