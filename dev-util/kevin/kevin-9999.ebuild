@@ -3,7 +3,7 @@
 
 EAPI=6
 
-PYTHON_COMPAT=( python3_6 )
+PYTHON_COMPAT=( python3_{6,7} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
@@ -29,7 +29,7 @@ SLOT="0"
 IUSE=""
 
 DEPEND="
-dev-python/requests[${PYTHON_USEDEP}]
+dev-python/aiohttp[${PYTHON_USEDEP}]
 www-servers/tornado[${PYTHON_USEDEP}]
 "
 RDEPEND="${DEPEND}"
