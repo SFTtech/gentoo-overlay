@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2 or later
 
 EAPI=6
-PYTHON_COMPAT=( python3_{4,5,6} )
+PYTHON_COMPAT=( python3_{4,5,6,7} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
@@ -26,35 +26,37 @@ fi
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="inotify tcmalloc profiling"
+IUSE="inotify tcmalloc profiling ncurses"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="
 ${PYTHON_DEPS}
-dev-python/pillow[${PYTHON_USEDEP}]
-dev-python/numpy[${PYTHON_USEDEP}]
-dev-python/jinja[${PYTHON_USEDEP}]
+>=dev-qt/qtcore-5.5:=
+>=dev-qt/qtdeclarative-5.5:=
+>=dev-qt/qtquickcontrols-5.5:=
+dev-cpp/eigen:=
 dev-libs/nyan:=
-virtual/opengl
-media-libs/libepoxy:=
-media-libs/harfbuzz:=
+dev-python/numpy[${PYTHON_USEDEP}]
+dev-python/pillow[${PYTHON_USEDEP}]
 media-fonts/dejavu
-media-libs/freetype:2=[X]
 media-libs/fontconfig:=
-media-libs/libsdl2:=[X,opengl,video]
+media-libs/freetype:2=[X]
+media-libs/harfbuzz:=
+media-libs/libepoxy:=
 media-libs/libogg:=
 media-libs/libpng:=
-media-libs/sdl2-image:=[png]
+media-libs/libsdl2:=[X,opengl,video]
+media-libs/opus:=
 media-libs/opusfile:=
-media-libs/opus
->=dev-qt/qtcore-5.5
->=dev-qt/qtdeclarative-5.5
->=dev-qt/qtquickcontrols-5.5
+media-libs/sdl2-image:=[png]
+virtual/opengl
 tcmalloc? ( dev-util/google-perftools )
 profiling? ( dev-util/google-perftools )
+ncurses? ( sys-libs/ncurses:= )
 "
 DEPEND="${RDEPEND}
 dev-python/cython[${PYTHON_USEDEP}]
+dev-python/jinja[${PYTHON_USEDEP}]
 dev-python/pygments[${PYTHON_USEDEP}]
 || ( >=sys-devel/clang-5.0.0 >=sys-devel/gcc-7.0.0 )
 "
@@ -65,6 +67,7 @@ src_configure() {
 		-DWANT_INOTIFY="$(usex inotify True False)"
 		-DWANT_GPERFTOOLS_TCMALLOC="$(usex tcmalloc True False)"
 		-DWANT_GPERFTOOLS_PROFILER="$(usex profiling True False)"
+		-DWANT_NCURSES="$(usex ncurses True False)"
 	)
 
 	cmake-utils_src_configure
