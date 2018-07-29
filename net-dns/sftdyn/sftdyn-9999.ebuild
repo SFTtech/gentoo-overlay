@@ -4,7 +4,7 @@
 
 EAPI=6
 
-PYTHON_COMPAT=( python3_5 python3_6 )
+PYTHON_COMPAT=( python3_{5,6,7} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
@@ -14,7 +14,7 @@ fi
 inherit distutils-r1 ${SCM}
 
 DESCRIPTION="dynamic dns updater server with https"
-HOMEPAGE="https://github.com/SFTtech/kevin"
+HOMEPAGE="https://github.com/SFTtech/sftdyn"
 SRC_URI=""
 
 if [[ ${PV} == *9999 ]] ; then
