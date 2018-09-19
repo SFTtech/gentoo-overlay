@@ -12,7 +12,7 @@ SLOT="0"
 
 BUNDLENAME=kcachegrind
 
-SRC_URI="http://kcachegrind.sourceforge.net/${BUNDLENAME}-${PV}.tar.gz"
+SRC_URI="https://kcachegrind.github.io/files/${BUNDLENAME}-${PV}.tar.gz"
 S="${WORKDIR}/${BUNDLENAME}-${PV}"
 
 LICENSE="GPL-2"
