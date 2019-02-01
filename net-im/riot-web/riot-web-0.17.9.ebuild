@@ -29,13 +29,20 @@ SLOT="0"
 IUSE="abi_x86_32 abi_x86_64"
 REQUIRED_USE="^^ ( abi_x86_32 abi_x86_64 )"
 
+JSPKG="npm"  # or yarn
+
 # get dependencies via readelf -a riot-web...
 DEPEND="
-	sys-apps/yarn
 	x11-libs/cairo
 	x11-libs/pango
 	media-libs/fontconfig
 "
+if [[ ${JSPKG} == "yarm" ]]; then
+	DEPEND="$DEPEND sys-apps/yarn"
+elif [[ ${JSPKG} == "npm" ]]; then
+	DEPEND="$DEPEND net-libs/nodejs[npm]"
+fi
+
 RDEPEND="${DEPEND}"
 
 DESTPATH="opt/riot-web"
@@ -49,14 +56,14 @@ QA_PREBUILT="
 
 src_prepare() {
 	default
-	yarn install || die "yarn module installation failed"
+	$JSPKG install || die "$JSPKG module installation failed"
 
 	if [[ ${PV} == "9999" ]]; then
 		pushd ${S}/node_modules/
 		rm -rf matrix-js-sdk
 		git clone https://github.com/matrix-org/matrix-js-sdk --branch develop
 		pushd matrix-js-sdk
-		yarn install
+		$JSPKG install
 		popd
 		popd
 	fi
@@ -66,7 +73,7 @@ src_prepare() {
 		rm -rf matrix-react-sdk
 		git clone https://github.com/matrix-org/matrix-react-sdk --branch develop
 		pushd matrix-react-sdk
-		yarn install
+		$JSPKG install
 		popd
 		popd
 	fi
@@ -75,8 +82,8 @@ src_prepare() {
 src_compile() {
 	cp ${S}/config.sample.json ${S}/config.json
 
-	yarn run build || die "build failed"
-	yarn run install:electron || die "electron install failed"
+	$JSPKG run build || die "build failed"
+	$JSPKG run install:electron || die "electron install failed"
 
 	if use abi_x86_32; then
 		${S}/node_modules/.bin/build --linux --ia32 --dir || die "bundling failed"
