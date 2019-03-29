@@ -29,18 +29,8 @@ IUSE=""
 REQUIRED_USE=""
 
 RDEPEND="
-sys-devel/llvm:7=
-sys-devel/clang:7=
-sys-libs/ncurses:=
+sys-devel/llvm
+sys-devel/clang
+sys-libs/ncurses
 "
 DEPEND="${RDEPEND}"
-
-
-src_configure() {
-	local mycmakeargs=(
-		-DLLVM_ENABLE_RTTI=ON
-		-DCLANG_ROOT=/usr/lib/llvm/7
-	)
-
-	cmake-utils_src_configure
-}
