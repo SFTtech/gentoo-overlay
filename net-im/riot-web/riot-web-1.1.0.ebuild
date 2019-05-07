@@ -29,7 +29,7 @@ SLOT="0"
 IUSE="abi_x86_32 abi_x86_64"
 REQUIRED_USE="^^ ( abi_x86_32 abi_x86_64 )"
 
-JSPKG="npm"  # or yarn
+JSPKG="yarn"  # or npm
 
 # get dependencies via readelf -a riot-web...
 DEPEND="
