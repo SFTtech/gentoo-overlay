@@ -86,9 +86,9 @@ src_compile() {
 	$JSPKG run install:electron || die "electron install failed"
 
 	if use abi_x86_32; then
-		${S}/node_modules/.bin/build --linux --ia32 --dir || die "bundling failed"
+		${S}/node_modules/.bin/electron-builder --linux --ia32 --dir || die "bundling failed"
 	elif use abi_x86_64; then
-		${S}/node_modules/.bin/build --linux --x64 --dir || die "bundling failed"
+		${S}/node_modules/.bin/electron-builder --linux --x64 --dir || die "bundling failed"
 	fi
 }
 
