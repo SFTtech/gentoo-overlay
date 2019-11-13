@@ -6,6 +6,7 @@ EAPI=6
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
 	EGIT_REPO_URI="https://github.com/Andersbakken/rtags.git"
+	EGIT_BRANCH="develop"
 fi
 
 CMAKE_MIN_VERSION=3.1.0
