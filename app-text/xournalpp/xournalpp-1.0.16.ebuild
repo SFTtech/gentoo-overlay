@@ -19,7 +19,7 @@ HOMEPAGE="https://github.com/xournalpp/xournalpp"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE=""
+IUSE="latex"
 
 DEPEND="
 	x11-libs/gtk+:3
@@ -30,7 +30,10 @@ DEPEND="
 	media-libs/libsndfile
 	dev-lang/lua
 	dev-libs/libzip
-	dev-texlive/texlive-pictures
+	latex? (
+		dev-texlive/texlive-pictures
+		dev-texlive/texlive-latexextra
+	)
 "
 RDEPEND="${RDEPEND}"
 
