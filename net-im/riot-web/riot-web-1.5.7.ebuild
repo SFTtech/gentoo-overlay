@@ -1,6 +1,21 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
+# NETWORK ACCESS
+#
+# this ebuild requires internet access! because javascript packaging.
+#
+# to allow network access just for this package:
+#
+# * /etc/portage/env/networkaccess:
+#   FEATURES="${FEATURES} -network-sandbox"
+#
+# * /etc/portage/package.env/package.env:
+#   net-im/riot-web networkaccess
+#
+# this avoids disabling `network-sandbox` globally.
+
+
 EAPI=6
 
 DESCRIPTION="A glossy Matrix collaboration client for the web"
@@ -32,15 +47,15 @@ REQUIRED_USE="^^ ( abi_x86_32 abi_x86_64 )"
 JSPKG="yarn"  # or npm
 
 # get dependencies via readelf -a riot-web...
-DEPEND="
+DEPEND_ALL="
 	x11-libs/cairo
 	x11-libs/pango
 	media-libs/fontconfig
 "
 if [[ ${JSPKG} == "yarm" ]]; then
-	DEPEND="$DEPEND sys-apps/yarn"
+	DEPEND="$DEPEND_ALL sys-apps/yarn"
 elif [[ ${JSPKG} == "npm" ]]; then
-	DEPEND="$DEPEND net-libs/nodejs[npm]"
+	DEPEND="$DEPEND_ALL net-libs/nodejs[npm]"
 fi
 
 RDEPEND="${DEPEND}"
