@@ -1,8 +1,8 @@
-# Copyright 2014-2018 Gentoo Foundation
+# Copyright 2014-2020 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2 or later
 
 EAPI=6
-PYTHON_COMPAT=( python3_{4,5,6,7} )
+PYTHON_COMPAT=( python3_{6,7,8} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
@@ -31,34 +31,38 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="
 ${PYTHON_DEPS}
->=dev-qt/qtcore-5.5:=
->=dev-qt/qtdeclarative-5.5:=
->=dev-qt/qtquickcontrols-5.5:=
-dev-cpp/eigen:=
-dev-libs/nyan:=
-dev-python/numpy[${PYTHON_USEDEP}]
-dev-python/pillow[${PYTHON_USEDEP}]
+dev-qt/qtcore:5
+dev-qt/qtdeclarative:5
+dev-qt/qtquickcontrols:5
+dev-cpp/eigen
+dev-libs/nyan
 media-fonts/dejavu
-media-libs/fontconfig:=
-media-libs/freetype:2=[X]
-media-libs/harfbuzz:=
-media-libs/libepoxy:=
-media-libs/libogg:=
-media-libs/libpng:=
-media-libs/libsdl2:=[X,opengl,video]
-media-libs/opus:=
-media-libs/opusfile:=
-media-libs/sdl2-image:=[png]
+media-libs/fontconfig
+media-libs/freetype:2[X]
+media-libs/harfbuzz
+media-libs/libepoxy
+media-libs/libogg
+media-libs/libpng
+media-libs/libsdl2[X,opengl,video]
+media-libs/opus
+media-libs/opusfile
+media-libs/sdl2-image[png]
 virtual/opengl
 tcmalloc? ( dev-util/google-perftools )
 profiling? ( dev-util/google-perftools )
-ncurses? ( sys-libs/ncurses:= )
+ncurses? ( sys-libs/ncurses )
+$(python_gen_cond_dep '
+    dev-python/numpy[${PYTHON_MULTI_USEDEP}]
+    dev-python/pillow[${PYTHON_MULTI_USEDEP}]
+')
 "
 DEPEND="${RDEPEND}
-dev-python/cython[${PYTHON_USEDEP}]
-dev-python/jinja[${PYTHON_USEDEP}]
-dev-python/pygments[${PYTHON_USEDEP}]
 || ( >=sys-devel/clang-5.0.0 >=sys-devel/gcc-7.0.0 )
+$(python_gen_cond_dep '
+    dev-python/cython[${PYTHON_MULTI_USEDEP}]
+    dev-python/jinja[${PYTHON_MULTI_USEDEP}]
+    dev-python/pygments[${PYTHON_MULTI_USEDEP}]
+')
 "
 
 
