@@ -21,6 +21,9 @@ EAPI=6
 DESCRIPTION="A glossy Matrix collaboration client for the web"
 HOMEPAGE="https://riot.im"
 
+MY_PV="${PV/_rc/-rc.}"
+MY_P="$PN-$MY_PV"
+S="${WORKDIR}/${MY_P}"
 
 if [[ ${PV} == "9999" ]]; then
 	SCM="git-r3"
@@ -29,7 +32,7 @@ if [[ ${PV} == "9999" ]]; then
 	EGIT_REPO_URI="git://github.com/vector-im/riot-web.git"
 	EGIT_BRANCH="develop"
 else
-	SRC_URI="https://github.com/vector-im/riot-web/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https://github.com/vector-im/riot-web/archive/v${MY_PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 fi
 
