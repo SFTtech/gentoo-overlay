@@ -1,0 +1,13 @@
+Index: renderdoc-1.7/qrenderdoc/Windows/Dialogs/PerformanceCounterSelection.cpp
+===================================================================
+--- renderdoc-1.7.orig/qrenderdoc/Windows/Dialogs/PerformanceCounterSelection.cpp
++++ renderdoc-1.7/qrenderdoc/Windows/Dialogs/PerformanceCounterSelection.cpp
+@@ -438,7 +438,7 @@ void PerformanceCounterSelection::Load()
+         selectedCounters.insert(m_UuidToCounter[uuid]);
+       }
+ 
+-      SetSelectedCounters(selectedCounters.toList());
++      SetSelectedCounters(selectedCounters.values());
+     }
+     else
+     {
