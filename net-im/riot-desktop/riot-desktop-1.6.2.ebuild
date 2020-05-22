@@ -36,7 +36,7 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-inherit eutils ${SCM}
+inherit eutils desktop xdg-utils ${SCM}
 
 LICENSE="Apache-2.0 MIT BSD"
 SLOT="0"
@@ -92,10 +92,22 @@ src_install() {
 	dosym ../../../usr/share/webapps/riot-web opt/${PN}/resources/webapp
 
 	# config symlink
-	dosym ../../../../etc/${PN}/config.json etc/webapps/riot-web/config.json
+	dosym /etc/${PN}/config.json etc/webapps/riot-web/config.json
 	insinto etc/${PN}
 	doins ${S}/riot.im/release/config.json
 
 	# symlink to main binary
 	dosym ../../opt/${PN}/${PN} usr/bin/${PN}
+
+	make_desktop_entry /usr/bin/${PN} Riot riot-im.svg
+}
+
+pkg_postinst() {
+	xdg_icon_cache_update
+	xdg_desktop_database_update
+}
+
+pkg_postrm() {
+	xdg_icon_cache_update
+	xdg_desktop_database_update
 }

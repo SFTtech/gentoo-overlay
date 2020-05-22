@@ -37,7 +37,7 @@ else
 fi
 
 # TODO: inherit from webapp
-inherit eutils ${SCM}
+inherit eutils desktop ${SCM}
 
 
 LICENSE="Apache-2.0 MIT BSD"
@@ -95,4 +95,12 @@ src_install() {
 	insinto etc/webapps/${PN}
 	doins config.sample.json
 	dosym etc/webapps/${PN}/config.json ../../../usr/share/webapps/${PN}/config.json
+
+	newicon res/themes/riot/img/logos/riot-im-logo.svg riot-im.svg
+}
+
+
+pkg_postinst() {
+	einfo "riot-web only contains a static webapp"
+	einfo "for the electron-executable, please install riot-desktop"
 }
