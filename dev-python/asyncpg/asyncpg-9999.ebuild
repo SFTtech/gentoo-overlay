@@ -1,8 +1,8 @@
-# Copyright 2016-2018 Gentoo Foundation
+# Copyright 2016-2020 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python3_{5,6,7} )
+PYTHON_COMPAT=( python3_{6,7,8} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
