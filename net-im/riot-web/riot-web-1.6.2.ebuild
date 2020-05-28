@@ -94,7 +94,7 @@ src_install() {
 
 	insinto etc/webapps/${PN}
 	doins config.sample.json
-	dosym etc/webapps/${PN}/config.json ../../../usr/share/webapps/${PN}/config.json
+	dosym /etc/webapps/${PN}/config.json usr/share/webapps/${PN}/config.json
 
 	newicon res/themes/riot/img/logos/riot-im-logo.svg riot-im.svg
 }
