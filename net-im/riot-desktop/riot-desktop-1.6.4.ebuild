@@ -99,7 +99,7 @@ src_install() {
 	# symlink to main binary
 	dosym ../../opt/${PN}/${PN} usr/bin/${PN}
 
-	make_desktop_entry /usr/bin/${PN} Riot riot-im.svg
+	make_desktop_entry /usr/bin/${PN} Riot riot-im
 }
 
 pkg_postinst() {
