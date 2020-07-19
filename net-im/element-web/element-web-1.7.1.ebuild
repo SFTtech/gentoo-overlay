@@ -11,7 +11,7 @@
 #   FEATURES="${FEATURES} -network-sandbox"
 #
 # * /etc/portage/package.env/package.env:
-#   net-im/riot-web networkaccess
+#   net-im/element-web networkaccess
 #
 # this avoids disabling `network-sandbox` globally.
 
@@ -19,11 +19,12 @@
 EAPI=7
 
 DESCRIPTION="A glossy Matrix collaboration client for the web"
-HOMEPAGE="https://riot.im"
+HOMEPAGE="https://element.io/"
 
 MY_PV="${PV/_rc/-rc.}"
 MY_P="$PN-$MY_PV"
-S="${WORKDIR}/${MY_P}"
+TMP_P="riot-web-$MY_PV"
+S="${WORKDIR}/${TMP_P}"
 
 if [[ ${PV} == "9999" ]]; then
 	SCM="git-r3"
@@ -45,7 +46,6 @@ SLOT="0"
 IUSE=""
 REQUIRED_USE=""
 
-# get dependencies via readelf -a riot-web...
 RDEPEND="
 	x11-libs/cairo
 	x11-libs/pango
@@ -96,11 +96,11 @@ src_install() {
 	doins config.sample.json
 	dosym /etc/webapps/${PN}/config.json usr/share/webapps/${PN}/config.json
 
-	newicon res/themes/riot/img/logos/riot-im-logo.svg riot-im.svg
+	newicon res/themes/element/img/logos/element-logo.svg element.svg
 }
 
 
 pkg_postinst() {
-	einfo "riot-web only contains a static webapp"
-	einfo "for the electron-executable, please install riot-desktop"
+	einfo "element-web only contains a static webapp"
+	einfo "for the electron-executable, please install element-desktop"
 }

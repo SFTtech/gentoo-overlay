@@ -11,7 +11,7 @@
 #   FEATURES="${FEATURES} -network-sandbox"
 #
 # * /etc/portage/package.env/package.env:
-#   net-im/riot-desktop networkaccess
+#   net-im/element-desktop networkaccess
 #
 # this avoids disabling `network-sandbox` globally.
 
@@ -19,11 +19,12 @@
 EAPI=7
 
 DESCRIPTION="A glossy Matrix collaboration client for desktop"
-HOMEPAGE="https://riot.im"
+HOMEPAGE="https://element.io"
 
 MY_PV="${PV/_rc/-rc.}"
 MY_P="$PN-$MY_PV"
-S="${WORKDIR}/${MY_P}"
+TMP_P="riot-desktop-$MY_PV"
+S="${WORKDIR}/${TMP_P}"
 
 if [[ ${PV} == "9999" ]]; then
 	SCM="git-r3"
@@ -44,12 +45,12 @@ SLOT="0"
 IUSE="+native-extensions"
 REQUIRED_USE=""
 
-# get dependencies via readelf -a riot-desktop...
+# get dependencies via readelf -a element-desktop...
 RDEPEND="
 	x11-libs/cairo
 	x11-libs/pango
 	media-libs/fontconfig
-	=net-im/riot-web-${PV}
+	=net-im/element-web-${PV}
 "
 DEPEND="
 	${RDEPEND}
@@ -61,7 +62,7 @@ DEPEND="
 src_prepare() {
 	default
 
-	sed -i 's@"https://packages.riot.im/desktop/update/"@null@g' ${S}/riot.im/release/config.json
+	sed -i 's@"https://packages.riot.im/desktop/update/"@null@g' ${S}/element.io/release/config.json
 	yarn install || die "yarn module installation failed"
 }
 
@@ -83,23 +84,23 @@ src_install() {
 	pushd ${S}/dist/linux-unpacked
 	doins -r locales resources
 	doins *.{pak,bin,dat}
-	# `ldd riot-desktop` says only libffmpeg.so is needed
+	# `ldd element-desktop` says only libffmpeg.so is needed
 	doins libffmpeg.so
 	doexe ${PN}
 	popd
 
 	# symlink to the actual webapp
-	dosym ../../../usr/share/webapps/riot-web opt/${PN}/resources/webapp
+	dosym ../../../usr/share/webapps/element-web opt/${PN}/resources/webapp
 
 	# config symlink
-	dosym /etc/${PN}/config.json etc/webapps/riot-web/config.json
+	dosym /etc/${PN}/config.json etc/webapps/element-web/config.json
 	insinto etc/${PN}
-	doins ${S}/riot.im/release/config.json
+	doins ${S}/element.io/release/config.json
 
 	# symlink to main binary
 	dosym ../../opt/${PN}/${PN} usr/bin/${PN}
 
-	make_desktop_entry /usr/bin/${PN} Riot riot-im
+	make_desktop_entry /usr/bin/${PN} Element element
 }
 
 pkg_postinst() {
