@@ -23,17 +23,17 @@ HOMEPAGE="https://element.io/"
 
 MY_PV="${PV/_rc/-rc.}"
 MY_P="$PN-$MY_PV"
-TMP_P="riot-web-$MY_PV"
+TMP_P="element-web-$MY_PV"
 S="${WORKDIR}/${TMP_P}"
 
 if [[ ${PV} == "9999" ]]; then
 	SCM="git-r3"
 
 	SRC_URI=""
-	EGIT_REPO_URI="https://github.com/vector-im/riot-web.git"
+	EGIT_REPO_URI="https://github.com/vector-im/element-web.git"
 	EGIT_BRANCH="develop"
 else
-	SRC_URI="https://github.com/vector-im/riot-web/archive/v${MY_PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https://github.com/vector-im/element-web/archive/v${MY_PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 fi
 
