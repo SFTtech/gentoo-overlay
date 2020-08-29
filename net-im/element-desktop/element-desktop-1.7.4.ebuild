@@ -45,17 +45,54 @@ SLOT="0"
 IUSE="+native-extensions"
 REQUIRED_USE=""
 
-# get dependencies via readelf -a element-desktop...
+# get dependencies via:
+# readelf -a element-desktop | ag "Shared library" | ag -o '\[(.*)\]' | tr -d '[]' | while read lib; do qfile /usr/lib/$lib; done | cut -d: -f1 | sort | uniq
+# libsecret is dlopen'd because of node-keytar
 RDEPEND="
-	x11-libs/cairo
-	x11-libs/pango
+	app-accessibility/at-spi2-atk
+	app-accessibility/at-spi2-core
+	app-crypt/libsecret
+	dev-libs/atk
+	dev-libs/expat
+	dev-libs/glib
+	dev-libs/nspr
+	dev-libs/nss
+	dev-libs/openssl
+	media-libs/alsa-lib
 	media-libs/fontconfig
+	media-libs/mesa
+	net-print/cups
+	sys-apps/dbus
+	x11-libs/cairo
+	x11-libs/gdk-pixbuf
+	x11-libs/gtk+:3
+	x11-libs/libX11
+	x11-libs/libXScrnSaver
+	x11-libs/libXcomposite
+	x11-libs/libXcursor
+	x11-libs/libXdamage
+	x11-libs/libXext
+	x11-libs/libXfixes
+	x11-libs/libXi
+	x11-libs/libXrandr
+	x11-libs/libXrender
+	x11-libs/libXtst
+	x11-libs/libdrm
+	x11-libs/libxcb
+	x11-libs/pango
+
+	native-extensions? (
+		dev-db/sqlcipher
+	)
+
 	=net-im/element-web-${PV}
 "
 DEPEND="
 	${RDEPEND}
 	sys-apps/yarn
-	native-extensions? ( dev-db/sqlcipher virtual/rust )
+	native-extensions? (
+		virtual/rust
+	)
 "
 
 
