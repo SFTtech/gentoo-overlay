@@ -49,8 +49,8 @@ REQUIRED_USE=""
 # readelf -a element-desktop | ag "Shared library" | ag -o '\[(.*)\]' | tr -d '[]' | while read lib; do qfile /usr/lib/$lib; done | cut -d: -f1 | sort | uniq
 # libsecret is dlopen'd because of node-keytar
 RDEPEND="
-	app-accessibility/at-spi2-atk
-	app-accessibility/at-spi2-core
+	!net-im/element-desktop-bin
+	app-accessibility/at-spi2-atk:2
 	app-crypt/libsecret
 	dev-libs/atk
 	dev-libs/expat
