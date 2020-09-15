@@ -1,0 +1,29 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+if [[ $# -ne 2 ]]; then
+    echo "usage: $0 <old> <new_version>"
+    echo "version example: 1.2.3"
+    exit 1;
+fi
+
+old_version=$1
+new_version=$2
+
+if [[ "${old_version}" == "" || "${new_version}" == "" ]]; then
+    echo "invalid versions";
+    exit 1;
+fi
+
+cd $DIR
+
+set -e -x
+
+mv element-web/element-web-${old_version}.ebuild element-web/element-web-${new_version}.ebuild
+mv element-desktop/element-desktop-${old_version}.ebuild element-desktop/element-desktop-${new_version}.ebuild
+
+ebuild element-web/element-web-${new_version}.ebuild manifest
+ebuild element-desktop/element-desktop-${new_version}.ebuild manifest
+
+echo done!
