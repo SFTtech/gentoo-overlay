@@ -46,7 +46,11 @@ SLOT="0"
 IUSE=""
 REQUIRED_USE=""
 
+# need nodejs 14 since node-canvas-prebuilt doesn't support node15 abi v88 yet.
+# https://github.com/node-gfx/node-canvas-prebuilt/releases
+# https://nodejs.org/en/download/releases/
 RDEPEND="
+	<net-libs/nodejs-15.0.0
 	x11-libs/cairo
 	x11-libs/pango
 	media-libs/fontconfig
