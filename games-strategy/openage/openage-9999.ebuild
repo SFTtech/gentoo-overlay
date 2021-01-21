@@ -54,6 +54,8 @@ ncurses? ( sys-libs/ncurses )
 $(python_gen_cond_dep '
     dev-python/numpy[${PYTHON_MULTI_USEDEP}]
     dev-python/pillow[${PYTHON_MULTI_USEDEP}]
+    dev-python/toml[${PYTHON_MULTI_USEDEP}]
+    dev-python/lz4[${PYTHON_MULTI_USEDEP}]
 ')
 "
 DEPEND="${RDEPEND}
