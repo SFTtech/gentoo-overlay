@@ -1,0 +1,10 @@
+--- a/CMakeLists.txt	2021-01-27 23:21:54.742553167 +0100
++++ b/CMakeLists.txt	2021-01-27 23:25:55.456971513 +0100
+@@ -307,6 +307,7 @@
+ 
+ if(cmake_build_type_lower STREQUAL "release" OR
+    cmake_build_type_lower STREQUAL "relwithdebinfo" OR
++   cmake_build_type_lower STREQUAL "gentoo" OR
+    cmake_build_type_lower STREQUAL "minsizerel")
+     add_definitions(-D_RELEASE)
+     message(STATUS "Building RenderDoc in Release mode: ${CMAKE_BUILD_TYPE}")

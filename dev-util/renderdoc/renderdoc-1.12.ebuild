@@ -2,15 +2,15 @@
 # Distributed under the terms of the GNU General Public License v2
 
 
-EAPI=6
+EAPI=7
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
-	EGIT_REPO_URI="https://github.com/baldurk/${PN}.git"
+	EGIT_REPO_URI="https://github.com/baldurk/renderdoc.git"
 	EGIT_BRANCH="v1.x"
 fi
 
-PYTHON_COMPAT=( python3_{6,7,8} )
+PYTHON_COMPAT=( python3_{7,8,9} )
 
 CMAKE_MIN_VERSION=3.1.0
 inherit ${SCM} qmake-utils cmake-multilib eutils python-single-r1 xdg-utils
@@ -52,6 +52,8 @@ qt5? (
 	dev-qt/qtsvg:5
 	dev-qt/qtwidgets:5
 	dev-qt/qtx11extras:5
+	dev-python/shiboken2
+	dev-python/pyside2
 )
 "
 DEPEND="${RDEPEND}
@@ -60,6 +62,7 @@ sys-devel/bison
 
 PATCHES="
 ${FILESDIR}/fix-deprecated-list-access.patch
+${FILESDIR}/gentoo-release-build.patch
 "
 
 
