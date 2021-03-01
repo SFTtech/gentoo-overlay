@@ -132,7 +132,10 @@ src_install() {
 	# config symlink
 	dosym /etc/${PN}/config.json etc/webapps/element-web/config.json
 	insinto etc/${PN}
-	doins ${S}/element.io/release/config.json
+	doins ${S}/element.io/app/config.json
+
+	# let's enable lab features!
+	sed -ie 's/    "showLabsSettings": false/    "showLabsSettings": true/' $D/etc/$PN/config.json
 
 	# symlink to main binary
 	dosym ../../opt/${PN}/${PN} usr/bin/${PN}
