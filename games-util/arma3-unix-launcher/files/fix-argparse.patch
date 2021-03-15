@@ -1,0 +1,26 @@
+fixes system argparse detection
+--- a/cmake/external_dependencies.cmake
++++ b/cmake/external_dependencies.cmake
+@@ -41,7 +41,7 @@ function(setup_library SOURCE_TO_TEST)
+ endfunction()
+ 
+ function(setup_argparse)
+-    set(CHECK_SOURCE "#include <argparse.hpp>
++    set(CHECK_SOURCE "#include <argparse/argparse.hpp>
+             int main()
+             {
+               return 0;
+--- a/src/arma3-unix-launcher/main.cpp
++++ b/src/arma3-unix-launcher/main.cpp
+@@ -2,7 +2,7 @@
+ #include "mainwindow.h"
+ #include <QApplication>
+ 
+-#include <argparse.hpp>
++#include <argparse/argparse.hpp>
+ #include <fmt/format.h>
+ #include <fmt/ostream.h>
+ 
+-- 
+2.26.2
+

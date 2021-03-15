@@ -1,0 +1,28 @@
+use system libfmt
+---
+ cmake/external_dependencies.cmake | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
+
+--- a/cmake/external_dependencies.cmake
++++ b/cmake/external_dependencies.cmake
+@@ -69,16 +69,7 @@ function(setup_doctest)
+ endfunction()
+ 
+ function(setup_fmt)
+-    set(CHECK_SOURCE "#include <fmt/format.h>
+-        int main()
+-        {
+-          fmt::print(\"hello\");
+-          return 0;
+-        }")
+-    setup_library("${CHECK_SOURCE}"
+-                  NAME fmt
+-                  GIT_REPOSITORY https://github.com/fmtlib/fmt.git
+-                  )
++    find_package(fmt)
+ endfunction()
+ 
+ function(setup_nlohmann_json)
+-- 
+2.26.2
+
