@@ -44,6 +44,7 @@ SLOT="0"
 
 IUSE="+native-extensions"
 REQUIRED_USE=""
+RESTRICT="network-sandbox"
 
 # get dependencies via:
 # readelf -a element-desktop | ag "Shared library" | ag -o '\[(.*)\]' | tr -d '[]' | while read lib; do qfile /usr/lib/$lib; done | cut -d: -f1 | sort | uniq

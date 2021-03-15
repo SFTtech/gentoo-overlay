@@ -45,6 +45,7 @@ LICENSE="Apache-2.0 MIT BSD"
 SLOT="0"
 IUSE=""
 REQUIRED_USE=""
+RESTRICT="network-sandbox"
 
 # maybe nodejs version needs to be limited according to these compatibilities:
 # https://github.com/node-gfx/node-canvas-prebuilt/releases
