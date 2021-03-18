@@ -26,6 +26,7 @@ DEPEND="
 	dev-libs/libfmt
 	dev-libs/pugixml
 	dev-cpp/argparse
+	dev-cpp/nlohmann_json
 	>=dev-qt/qtwidgets-5.9:5
 	>=dev-qt/qtsvg-5.9:5
 	>=dev-qt/qtcore-5.9:5
