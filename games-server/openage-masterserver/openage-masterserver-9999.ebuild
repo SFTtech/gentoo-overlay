@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=5
+EAPI=6
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
@@ -11,7 +11,7 @@ fi
 
 CABAL_FEATURES="bin profile haddock hscolour hoogle test-suite"
 
-inherit games haskell-cabal ${SCM}
+inherit haskell-cabal ${SCM}
 
 DESCRIPTION="Masterserver for matchmaking and lobby mediating for openage"
 HOMEPAGE="http://openage.sft.mx/ https://github.com/SFTtech/openage-masterserver"
