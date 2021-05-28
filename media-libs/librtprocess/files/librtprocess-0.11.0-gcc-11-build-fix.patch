@@ -1,0 +1,22 @@
+From 470986b0d76b1568647352455e60f5a23f21684f Mon Sep 17 00:00:00 2001
+From: Mattia Verga <mattia.verga@tiscali.it>
+Date: Sun, 7 Mar 2021 10:02:43 +0100
+Subject: [PATCH] Fix include for GCC11
+
+This fixes build with GCC11 on Fedora.
+---
+ src/include/librtprocess.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/include/librtprocess.h b/src/include/librtprocess.h
+index ee9be07..9d1462c 100644
+--- a/src/include/librtprocess.h
++++ b/src/include/librtprocess.h
+@@ -21,6 +21,7 @@
+ #define _LIBRTPROCESS_
+ 
+ #include <functional>
++#include <cstddef>
+ 
+ 
+ enum rpError {RP_NO_ERROR, RP_MEMORY_ERROR, RP_WRONG_CFA, RP_CACORRECT_ERROR};

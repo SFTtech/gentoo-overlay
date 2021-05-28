@@ -1,0 +1,24 @@
+From 2b2f56c5fc66fdf6ff3b42fa62b6423a493594fd Mon Sep 17 00:00:00 2001
+From: Linus Lotz <linus@lotz.li>
+Date: Fri, 28 May 2021 17:12:12 +0200
+Subject: [PATCH 2/2] fix build missing include for printf
+
+---
+ src/include/LUT.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/include/LUT.h b/src/include/LUT.h
+index 8cb683b..a520912 100644
+--- a/src/include/LUT.h
++++ b/src/include/LUT.h
+@@ -61,6 +61,7 @@
+ 
+ #include <cstring>
+ #include <cstdint>
++#include <cstdio>
+ #ifndef NDEBUG
+ #include <cassert>
+ #endif
+-- 
+2.31.1
+
