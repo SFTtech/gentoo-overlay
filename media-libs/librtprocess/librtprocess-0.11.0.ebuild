@@ -9,7 +9,7 @@ DESCRIPTION="Algorithms for RAW processing from RawTherapee"
 HOMEPAGE="https://github.com/CarVac/librtprocess/"
 SRC_URI="https://github.com/CarVac/librtprocess/archive/refs/tags/0.11.0.tar.gz -> ${P}.tar.gz"
 
-LICENSE="GPL3"
+LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="openmp"
