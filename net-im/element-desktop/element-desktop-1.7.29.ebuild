@@ -141,7 +141,21 @@ src_install() {
 	# symlink to main binary
 	dosym ../../opt/${PN}/${PN} usr/bin/${PN}
 
-	make_desktop_entry /usr/bin/${PN} Element element
+	make_desktop_entry "/usr/bin/${PN}" Element element InstantMessaging
+
+	# element:// url handler
+	cat <<-EOF > "${S}/element-url-handler.desktop" || die
+	[Desktop Entry]
+	Name=Element - URL Handler
+	Type=Application
+	Exec=/usr/bin/${PN} %U
+	Icon=${PN}
+	NoDisplay=true
+	StartupNotify=true
+	Categories=InstantMessaging;
+	MimeType=x-scheme-handler/element;
+	EOF
+	domenu "${S}/element-url-handler.desktop"
 }
 
 pkg_postinst() {
