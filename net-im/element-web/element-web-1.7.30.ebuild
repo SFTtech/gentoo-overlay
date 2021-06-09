@@ -51,7 +51,7 @@ RESTRICT="network-sandbox"
 # https://github.com/node-gfx/node-canvas-prebuilt/releases
 # https://nodejs.org/en/download/releases/
 RDEPEND="
-	net-libs/nodejs
+	<net-libs/nodejs-16
 	x11-libs/cairo
 	x11-libs/pango
 	media-libs/fontconfig
