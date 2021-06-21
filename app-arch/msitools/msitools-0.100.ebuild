@@ -1,8 +1,7 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
-EAPI=6
+EAPI=7
 
 inherit gnome2 vala
 
@@ -30,6 +29,11 @@ DEPEND="${RDEPEND}
 	>=virtual/pkgconfig-0-r1
 	vala? ( $(vala_depend) )
 "
+
+src_prepare() {
+	default
+	gnome2_src_prepare
+}
 
 src_configure() {
 	ECONF_SOURCE=${S} \
