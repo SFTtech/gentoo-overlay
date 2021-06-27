@@ -1,0 +1,21 @@
+From 3fcf81bbde215349283391fd3d01cc901029427a Mon Sep 17 00:00:00 2001
+search system for bats as well
+
+---
+ meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/meson.build
++++ b/meson.build
+@@ -9,7 +9,7 @@ gnome = import('gnome')
+ 
+ perl = find_program('perl')
+ bison = find_program('bison')
+-bats = find_program('subprojects/bats-core/bin/bats')
++bats = find_program(['bats', 'subprojects/bats-core/bin/bats'])
+ glib = dependency('glib-2.0', version: '>= 2.12')
+ gobject = dependency('gobject-2.0', version: '>= 0.9.4')
+ gio = dependency('gio-2.0', version: '>= 2.14')
+-- 
+2.31.1
+
