@@ -91,6 +91,7 @@ RDEPEND="
 DEPEND="
 	${RDEPEND}
 	sys-apps/yarn
+	>=net-libs/nodejs-14.17.0
 	native-extensions? (
 		virtual/rust
 	)
