@@ -1,0 +1,22 @@
+--- a/hak/matrix-seshat/check.js	2021-07-05 17:55:20.000000000 +0200
++++ b/hak/matrix-seshat/check.js	2021-07-05 20:45:24.906475875 +0200
+@@ -61,17 +61,6 @@
+         });
+     }
+ 
+-    // Ensure Rust target exists
+-    await new Promise((resolve, reject) => {
+-        childProcess.execFile('rustup', ['target', 'list', '--installed'], (err, out) => {
+-            if (err) {
+-                reject("Can't find rustup");
+-            }
+-            const target = hakEnv.getTargetId();
+-            if (!out.includes(target)) {
+-                reject(`Rust target ${target} not installed`);
+-            }
+-            resolve();
+-        });
+-    });
++    // patched out rust target check
++    // this is handled in the gentoo ebuild
+ };
