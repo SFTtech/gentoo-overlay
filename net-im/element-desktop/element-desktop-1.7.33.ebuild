@@ -97,9 +97,7 @@ DEPEND="
 	)
 "
 
-PATCHES=(
-	"${FILESDIR}/no-rustup.patch"
-)
+PATCHES=()
 
 
 src_prepare() {
