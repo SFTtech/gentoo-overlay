@@ -10,7 +10,7 @@ if [[ ${PV} == *9999 ]] ; then
 	EGIT_BRANCH="v1.x"
 fi
 
-PYTHON_COMPAT=( python3_{7,8,9} )
+PYTHON_COMPAT=( python3_{7,8,9,10} )
 
 CMAKE_MIN_VERSION=3.1.0
 inherit ${SCM} qmake-utils cmake-multilib eutils python-single-r1 xdg-utils
@@ -52,7 +52,9 @@ qt5? (
 	dev-qt/qtsvg:5
 	dev-qt/qtwidgets:5
 	dev-qt/qtx11extras:5
-	dev-python/shiboken2
+	$(python_gen_cond_dep '
+	dev-python/shiboken2[${PYTHON_USEDEP}]
+	')
 	dev-python/pyside2
 )
 "
@@ -79,6 +81,9 @@ multilib_src_configure() {
 		local mycmakeargs=(
 			-DENABLE_QRENDERDOC="$(usex qt5 ON OFF)"
 			-DENABLE_PYRENDERDOC="$(usex python ON OFF)"
+			-DPython3_EXECUTABLE="${PYTHON}"
+			# for Shiboken2Config.cmake
+			-DPYTHON_CONFIG_SUFFIX="-python$(${PYTHON} -c 'import sys; print("%d.%d" % (sys.version_info[0], sys.version_info[1]), end="")')"
 			-DRENDERDOC_SWIG_PACKAGE="${SWIGDIR}"
 		)
 	else
