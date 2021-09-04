@@ -32,11 +32,6 @@ DEPEND="
 	"
 RDEPEND="${DEPEND}"
 
-PATCHES=(
-	"${FILESDIR}"/${P}-glib-fix.patch
-	"${FILESDIR}"/${P}-fix-warnings.patch
-)
-
 src_unpack() {
 	unpack ${A}
 }
