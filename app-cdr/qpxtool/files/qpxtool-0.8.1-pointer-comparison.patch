@@ -1,0 +1,13 @@
+diff --git a/gui/src/mainwindow.cpp b/gui/src/mainwindow.cpp
+index 520d44e..8518220 100644
+--- a/gui/src/mainwindow.cpp
++++ b/gui/src/mainwindow.cpp
+@@ -427,7 +427,7 @@ void QPxToolMW::selectTab()
+ 	int idx;
+ 	QAction *act = (QAction*) sender();
+ 	idx = act_sblist.indexOf(act);
+-	if (act<0) return;
++	if (act<(QAction*)0) return;
+ 	mwidget->selectTab(idx);
+ }
+ 
