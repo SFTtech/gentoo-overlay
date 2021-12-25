@@ -222,7 +222,7 @@ zeroize_derive-1.2.2
 
 inherit cargo ${SCM}
 
-DESCRIPTION="wirespider"
+DESCRIPTION="Wirespider allows distributing wireguard tunnels and routes"
 # Double check the homepage as the cargo_metadata crate
 # does not provide this value so instead repository is used
 HOMEPAGE="https://github.com/SFTtech/wirespider"
@@ -230,7 +230,7 @@ SRC_URI="${SRC_URI} $(cargo_crate_uris ${CRATES})"
 RESTRICT="mirror"
 # License set may be more restrictive as OR is not respected
 # use cargo-license for a more accurate license picture
-LICENSE="Apache-2.0 Apache-2.0 WITH LLVM-exception BSD-3-Clause BSL-1.0 GPL-3 ISC MIT MPL-2.0 Unlicense Zlib"
+LICENSE="Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 GPL-3 ISC MIT MPL-2.0 Unlicense ZLIB"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
