@@ -23,7 +23,7 @@ CRATES="
 ahash-0.7.6
 aho-corasick-0.7.18
 ansi_term-0.12.1
-anyhow-1.0.51
+anyhow-1.0.52
 async-stream-0.3.2
 async-stream-impl-0.3.2
 async-trait-0.1.52
@@ -34,14 +34,17 @@ base64-0.13.0
 bitflags-1.3.2
 block-buffer-0.9.0
 buffering-0.3.4
+build_const-0.2.2
 bumpalo-3.8.0
+bytecodec-0.4.15
 byteorder-1.4.3
 bytes-1.1.0
 cc-1.0.72
 cfg-if-1.0.0
-clap-3.0.0-rc.7
-clap_derive-3.0.0-rc.7
+clap-3.0.0-rc.8
+clap_derive-3.0.0-rc.8
 cpufeatures-0.2.1
+crc-1.8.1
 crc-2.1.0
 crc-catalog-1.1.1
 crossbeam-channel-0.5.1
@@ -75,6 +78,7 @@ hashlink-0.7.0
 heck-0.3.3
 hermit-abi-0.1.19
 hex-0.4.3
+hmac-sha1-0.1.3
 http-0.2.5
 http-body-0.4.4
 httparse-1.5.1
@@ -95,6 +99,7 @@ libsqlite3-sys-0.22.2
 lock_api-0.4.5
 log-0.4.14
 matches-0.1.9
+md5-0.7.0
 memchr-2.4.1
 minimal-lexical-0.2.1
 mio-0.7.14
@@ -112,8 +117,8 @@ parking_lot-0.11.2
 parking_lot_core-0.8.5
 percent-encoding-2.1.0
 petgraph-0.6.0
-pin-project-1.0.8
-pin-project-internal-1.0.8
+pin-project-1.0.9
+pin-project-internal-1.0.9
 pin-project-lite-0.2.7
 pin-utils-0.1.0
 pkg-config-0.3.24
@@ -121,13 +126,13 @@ ppv-lite86-0.2.15
 proc-macro-error-1.0.4
 proc-macro-error-attr-1.0.4
 proc-macro2-0.4.30
-proc-macro2-1.0.34
+proc-macro2-1.0.36
 prost-0.9.0
 prost-build-0.9.0
 prost-derive-0.9.0
 prost-types-0.9.0
 quote-0.6.13
-quote-1.0.10
+quote-1.0.14
 rand-0.8.4
 rand_chacha-0.3.1
 rand_core-0.6.3
@@ -140,6 +145,7 @@ ring-0.16.20
 rustls-0.19.1
 scopeguard-1.1.0
 sct-0.6.1
+sha1-0.2.0
 sha2-0.9.8
 sharded-slab-0.1.4
 slab-0.4.5
@@ -154,9 +160,10 @@ sqlx-rt-0.5.9
 stringprep-0.1.2
 strsim-0.10.0
 strsim-0.7.0
+stun_codec-0.1.13
 subtle-ng-2.5.0
 syn-0.15.44
-syn-1.0.82
+syn-1.0.84
 synstructure-0.12.6
 tempfile-3.2.0
 termcolor-1.1.2
@@ -183,10 +190,13 @@ tracing-core-0.1.21
 tracing-error-0.2.0
 tracing-futures-0.2.5
 tracing-log-0.1.2
-tracing-subscriber-0.3.3
+tracing-subscriber-0.3.4
 tracing-unwrap-0.9.2
+trackable-0.2.24
+trackable-1.2.0
+trackable_derive-1.0.0
 try-lock-0.2.3
-typenum-1.14.0
+typenum-1.15.0
 unicode-bidi-0.3.7
 unicode-normalization-0.1.19
 unicode-segmentation-1.8.0
@@ -197,7 +207,7 @@ untrusted-0.7.1
 url-2.2.2
 uuid-0.8.2
 vcpkg-0.2.15
-version_check-0.9.3
+version_check-0.9.4
 want-0.3.0
 wasi-0.10.2+wasi-snapshot-preview1
 wasm-bindgen-0.2.78
@@ -214,7 +224,7 @@ winapi-0.3.9
 winapi-i686-pc-windows-gnu-0.4.0
 winapi-util-0.1.5
 winapi-x86_64-pc-windows-gnu-0.4.0
-wireguard-uapi-2.0.1
+wireguard-uapi-2.0.2
 x25519-dalek-ng-1.1.1
 zeroize-1.4.3
 zeroize_derive-1.2.2
@@ -239,3 +249,16 @@ BDEPEND="virtual/rust[rustfmt]
 	dev-libs/protobuf"
 DEPEND=""
 RDEPEND=""
+
+
+src_install() {
+    cargo_src_install
+    insinto /lib/systemd/system/
+    doins systemd/system/wirespider-server.service
+    doins systemd/system/wirespider-client@.service
+
+    insinto /etc/wirespider/
+    newins systemd/wirespider/wg0 example
+
+    dodoc README.md CHANGELOG.md LICENSE
+}
