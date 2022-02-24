@@ -5,9 +5,14 @@ EAPI=7
 
 inherit meson git-r3
 
+if [[ ${PV} == *_rc* ]] ; then
+	MY_PV=${PV/_rc/-rc}
+fi
+
 DESCRIPTION="a free astronomical image processing software"
 HOMEPAGE="https://www.siril.org/"
-SRC_URI="https://gitlab.com/free-astro/siril/-/archive/${PV}/${P}.tar.bz2"
+SRC_URI="https://free-astro.org/download/${PN}-${MY_PV}.tar.bz2"
+S="${WORKDIR}"
 
 LICENSE="GPL-3"
 SLOT="0"
