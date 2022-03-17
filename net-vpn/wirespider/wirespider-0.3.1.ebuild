@@ -24,8 +24,8 @@ CRATES="
 	aho-corasick-0.7.18
 	ansi_term-0.12.1
 	anyhow-1.0.56
-	async-stream-0.3.2
-	async-stream-impl-0.3.2
+	async-stream-0.3.3
+	async-stream-impl-0.3.3
 	async-trait-0.1.52
 	atoi-0.4.0
 	atty-0.2.14
@@ -48,8 +48,8 @@ CRATES="
 	crc-1.8.1
 	crc-2.1.0
 	crc-catalog-1.1.1
-	crossbeam-queue-0.3.4
-	crossbeam-utils-0.8.7
+	crossbeam-queue-0.3.5
+	crossbeam-utils-0.8.8
 	curve25519-dalek-ng-4.1.1
 	darling-0.9.0
 	darling_core-0.9.0
@@ -99,7 +99,7 @@ CRATES="
 	itoa-1.0.1
 	js-sys-0.3.56
 	lazy_static-1.4.0
-	libc-0.2.119
+	libc-0.2.120
 	libsqlite3-sys-0.23.2
 	lock_api-0.4.6
 	log-0.4.14
@@ -111,7 +111,7 @@ CRATES="
 	miow-0.3.7
 	multimap-0.8.3
 	neli-0.4.3
-	nom-7.1.0
+	nom-7.1.1
 	ntapi-0.3.7
 	num-traits-0.2.14
 	num_cpus-1.13.1
@@ -171,7 +171,7 @@ CRATES="
 	stun_codec-0.1.13
 	subtle-ng-2.5.0
 	syn-0.15.44
-	syn-1.0.86
+	syn-1.0.88
 	synstructure-0.12.6
 	tempfile-3.3.0
 	termcolor-1.1.3
