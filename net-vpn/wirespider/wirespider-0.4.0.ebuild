@@ -24,28 +24,32 @@ CRATES="
 	aho-corasick-0.7.18
 	ansi_term-0.12.1
 	anyhow-1.0.56
+	async-recursion-1.0.0
 	async-stream-0.3.3
 	async-stream-impl-0.3.3
-	async-trait-0.1.52
+	async-trait-0.1.53
 	atoi-0.4.0
 	atty-0.2.14
 	autocfg-1.1.0
+	axum-0.5.0
+	axum-core-0.2.0
 	backoff-0.4.0
 	base64-0.13.0
 	bitflags-1.3.2
 	block-buffer-0.9.0
 	buffering-0.3.4
-	build_const-0.2.2
 	bumpalo-3.9.1
 	bytecodec-0.4.15
 	byteorder-1.4.3
 	bytes-1.1.0
 	cc-1.0.73
 	cfg-if-1.0.0
-	clap-3.1.6
-	clap_derive-3.1.4
-	cpufeatures-0.2.1
-	crc-1.8.1
+	clap-3.1.8
+	clap_complete-3.1.1
+	clap_derive-3.1.7
+	cmake-0.1.48
+	const-sha1-0.2.0
+	cpufeatures-0.2.2
 	crc-2.1.0
 	crc-catalog-1.1.1
 	crossbeam-queue-0.3.5
@@ -71,12 +75,13 @@ CRATES="
 	futures-executor-0.3.21
 	futures-intrusive-0.4.0
 	futures-io-0.3.21
+	futures-macro-0.3.21
 	futures-sink-0.3.21
 	futures-task-0.3.21
 	futures-util-0.3.21
 	generic-array-0.14.5
-	getrandom-0.2.5
-	h2-0.3.12
+	getrandom-0.2.6
+	h2-0.3.13
 	hashbrown-0.11.2
 	hashlink-0.7.0
 	heck-0.3.3
@@ -86,31 +91,38 @@ CRATES="
 	hmac-sha1-0.1.3
 	http-0.2.6
 	http-body-0.4.4
+	http-range-header-0.3.0
 	httparse-1.6.0
 	httpdate-1.0.2
-	hyper-0.14.17
+	hyper-0.14.18
 	hyper-timeout-0.4.1
 	ident_case-1.0.1
 	idna-0.2.3
-	indexmap-1.8.0
+	indexmap-1.8.1
 	instant-0.1.12
 	ipnet-2.4.0
+	iprange-0.6.7
 	itertools-0.10.3
 	itoa-1.0.1
 	js-sys-0.3.56
 	lazy_static-1.4.0
-	libc-0.2.120
+	libc-0.2.121
 	libsqlite3-sys-0.23.2
-	lock_api-0.4.6
-	log-0.4.14
+	local-ip-address-0.4.4
+	lock_api-0.4.7
+	log-0.4.16
 	matches-0.1.9
+	matchit-0.5.0
 	md5-0.7.0
+	memalloc-0.1.0
 	memchr-2.4.1
+	mime-0.3.16
 	minimal-lexical-0.2.1
-	mio-0.8.1
+	mio-0.8.2
 	miow-0.3.7
 	multimap-0.8.3
 	neli-0.4.3
+	neli-0.5.3
 	nom-7.1.1
 	ntapi-0.3.7
 	num-traits-0.2.14
@@ -120,42 +132,47 @@ CRATES="
 	os_str_bytes-6.0.0
 	parking_lot-0.11.2
 	parking_lot_core-0.8.5
-	paste-1.0.6
+	paste-1.0.7
 	percent-encoding-2.1.0
 	petgraph-0.6.0
 	pin-project-1.0.10
 	pin-project-internal-1.0.10
 	pin-project-lite-0.2.8
 	pin-utils-0.1.0
-	pkg-config-0.3.24
+	pkg-config-0.3.25
 	ppv-lite86-0.2.16
+	prettyplease-0.1.9
 	proc-macro-error-1.0.4
 	proc-macro-error-attr-1.0.4
 	proc-macro2-0.4.30
 	proc-macro2-1.0.36
-	prost-0.9.0
-	prost-build-0.9.0
-	prost-derive-0.9.0
-	prost-types-0.9.0
+	prost-0.10.0
+	prost-build-0.10.0
+	prost-derive-0.10.0
+	prost-types-0.10.0
 	quote-0.6.13
-	quote-1.0.15
+	quote-1.0.17
 	rand-0.8.5
 	rand_chacha-0.3.1
 	rand_core-0.6.3
-	redox_syscall-0.2.11
+	redox_syscall-0.2.13
 	regex-1.5.5
 	regex-syntax-0.6.25
 	remove_dir_all-0.5.3
 	ring-0.16.20
 	rustc-serialize-0.3.24
 	rustls-0.19.1
+	rustls-0.20.4
+	rustls-pemfile-0.3.0
 	scopeguard-1.1.0
 	sct-0.6.1
+	sct-0.7.0
+	serde-1.0.136
 	sha1-0.2.0
 	sha2-0.9.9
 	sharded-slab-0.1.4
 	signal-hook-registry-1.4.0
-	slab-0.4.5
+	slab-0.4.6
 	smallvec-1.8.0
 	socket2-0.4.4
 	spin-0.5.2
@@ -168,10 +185,11 @@ CRATES="
 	stringprep-0.1.2
 	strsim-0.7.0
 	strsim-0.10.0
-	stun_codec-0.1.13
+	stun_codec-0.2.0
 	subtle-ng-2.5.0
 	syn-0.15.44
-	syn-1.0.88
+	syn-1.0.90
+	sync_wrapper-0.1.1
 	synstructure-0.12.6
 	tempfile-3.3.0
 	termcolor-1.1.3
@@ -182,29 +200,32 @@ CRATES="
 	tinyvec-1.5.1
 	tinyvec_macros-0.1.0
 	tokio-1.17.0
+	tokio-graceful-shutdown-0.5.0
 	tokio-io-timeout-1.2.0
 	tokio-macros-1.7.0
 	tokio-rustls-0.22.0
+	tokio-rustls-0.23.3
 	tokio-stream-0.1.8
-	tokio-util-0.6.9
-	tokio-util-0.7.0
-	tonic-0.6.2
-	tonic-build-0.6.2
+	tokio-util-0.7.1
+	tonic-0.7.0
+	tonic-build-0.7.0
 	tower-0.4.12
+	tower-http-0.2.5
 	tower-layer-0.3.1
 	tower-service-0.3.1
 	tracing-0.1.32
 	tracing-attributes-0.1.20
-	tracing-core-0.1.23
+	tracing-core-0.1.24
 	tracing-error-0.2.0
 	tracing-futures-0.2.5
 	tracing-log-0.1.2
-	tracing-subscriber-0.3.9
+	tracing-subscriber-0.3.10
 	tracing-unwrap-0.9.2
 	trackable-0.2.24
 	trackable-1.2.0
 	trackable_derive-1.0.0
 	try-lock-0.2.3
+	typed-builder-0.10.0
 	typenum-1.15.0
 	unicode-bidi-0.3.7
 	unicode-normalization-0.1.19
@@ -228,15 +249,20 @@ CRATES="
 	wasm-bindgen-shared-0.2.79
 	web-sys-0.3.56
 	webpki-0.21.4
+	webpki-0.22.0
 	webpki-roots-0.21.1
-	which-4.2.4
+	webpki-roots-0.22.2
+	which-4.2.5
 	winapi-0.3.9
 	winapi-i686-pc-windows-gnu-0.4.0
 	winapi-util-0.1.5
 	winapi-x86_64-pc-windows-gnu-0.4.0
+	windows-0.18.0
+	windows_gen-0.18.0
+	windows_macros-0.18.0
 	wireguard-uapi-2.0.2
 	x25519-dalek-ng-1.1.1
-	zeroize-1.5.3
+	zeroize-1.5.4
 	zeroize_derive-1.3.2
 "
 
