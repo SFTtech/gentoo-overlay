@@ -31,8 +31,8 @@ CRATES="
 	atoi-0.4.0
 	atty-0.2.14
 	autocfg-1.1.0
-	axum-0.5.0
-	axum-core-0.2.0
+	axum-0.5.1
+	axum-core-0.2.1
 	backoff-0.4.0
 	base64-0.13.0
 	bitflags-1.3.2
@@ -295,6 +295,12 @@ src_install() {
 
     insinto /etc/wirespider/
     newins systemd/wirespider/wg0 example
+
+	insinto /usr/share/bash-completion/completions/
+	newins completions/wirespider.bash wirespider
+
+	insinto /usr/share/zsh/site-functions/
+	doins completions/_wirespider
 
     dodoc README.md CHANGELOG.md LICENSE
 }
