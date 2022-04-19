@@ -284,7 +284,7 @@ IUSE=""
 BDEPEND=">=virtual/rust-1.59[rustfmt]
 	dev-libs/protobuf"
 DEPEND=""
-RDEPEND=""
+RDEPEND="acct-user/wirespider"
 
 
 src_install() {
