@@ -281,7 +281,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-BDEPEND="virtual/rust[rustfmt]
+BDEPEND=">=virtual/rust-1.59[rustfmt]
 	dev-libs/protobuf"
 DEPEND=""
 RDEPEND=""
