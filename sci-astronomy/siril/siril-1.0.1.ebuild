@@ -23,6 +23,7 @@ DEPEND="
 	sci-libs/cfitsio
 	sci-libs/fftw:3.0=
 	sci-libs/gsl:=
+	dev-libs/libconfig
 	>=x11-libs/gtk+-3.20.0:3
 	curl? ( net-misc/curl )
 	ffmpeg? ( media-video/ffmpeg:= )
