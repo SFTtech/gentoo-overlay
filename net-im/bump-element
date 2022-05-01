@@ -2,23 +2,27 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-if [[ $# -ne 2 ]]; then
-    echo "usage: $0 <old> <new_version>"
+if [[ $# -ne 1 || $1 == "-h" || $1 == "--help" ]]; then
+    echo "usage: $0 <new_version>"
     echo "version example: 1.2.3"
-    exit 1;
-fi
-
-old_version=$1
-new_version=$2
-
-if [[ "${old_version}" == "" || "${new_version}" == "" ]]; then
-    echo "invalid versions";
     exit 1;
 fi
 
 cd $DIR
 
-set -e -x
+old_version=$(ls element-desktop/element-desktop-*.ebuild | pcregrep -o1 '[^\d]+([\d\.]+).ebuild')
+new_version=$(echo $1 | pcregrep '[\d\.]+')
+
+echo "validating versions..."
+
+if [[ "${old_version}" == "" || "${new_version}" == "" ]]; then
+    echo "invalid versions"
+    echo "old = '$old_version'"
+    echo "new = '$new_version'"
+    exit 1
+fi
+
+set -e
 
 mv element-web/element-web-${old_version}.ebuild element-web/element-web-${new_version}.ebuild
 mv element-desktop/element-desktop-${old_version}.ebuild element-desktop/element-desktop-${new_version}.ebuild
