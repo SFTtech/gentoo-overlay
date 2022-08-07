@@ -1,6 +1,0 @@
-(add-to-list 'load-path "@SITELISP@")
-(autoload 'ac-rtags "ac-rtags" "autocomplete completion backend for rtags" t)
-(autoload 'company-rtags "company-rtags" "company completion backend for rtags" t)
-(autoload 'flycheck-rtags "flycheck-rtags" "flycheck completion backend for rtags" t)
-(autoload 'helm-rtags "helm-rtags" "helm completion backend for rtags" t)
-(autoload 'ivy-rtags "ivy-rtags" "ivy completion backend for rtags" t)
