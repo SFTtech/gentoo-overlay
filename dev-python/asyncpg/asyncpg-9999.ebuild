@@ -1,8 +1,8 @@
 # Copyright 2016-2020 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-PYTHON_COMPAT=( python3_{6,7,8,9} )
+EAPI=7
+PYTHON_COMPAT=( python3_{8,9,10} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
@@ -30,7 +30,7 @@ IUSE="debug"
 REQUIRED_USE=""
 
 RDEPEND="
-dev-db/postgresql
+dev-db/postgresql:*
 "
 DEPEND="
 dev-python/cython
