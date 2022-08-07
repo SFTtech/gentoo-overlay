@@ -8,7 +8,7 @@ if [[ ${PV} == *9999 ]] ; then
 	EGIT_REPO_URI="https://github.com/tobhe/${PN}.git"
 fi
 
-inherit cmake-utils ${SCM}
+inherit cmake ${SCM}
 
 DESCRIPTION="a serial terminal emulator from OpenBSD"
 HOMEPAGE="https://github.com/tobhe/opencu"
@@ -29,10 +29,3 @@ REQUIRED_USE=""
 
 RDEPEND=""
 DEPEND="${RDEPEND}"
-
-
-src_configure() {
-	#local mycmakeargs=()
-
-	cmake-utils_src_configure
-}
