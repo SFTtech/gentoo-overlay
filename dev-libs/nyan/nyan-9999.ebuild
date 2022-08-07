@@ -1,14 +1,14 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
 	EGIT_REPO_URI="https://github.com/SFTtech/${PN}.git"
 fi
 
-inherit cmake-utils ${SCM}
+inherit cmake ${SCM}
 
 DESCRIPTION="nyan - yet another notation: hierarchical inherited key-value store"
 HOMEPAGE="https://github.com/SFTtech/nyan"
