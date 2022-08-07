@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7,8} )
+PYTHON_COMPAT=( python3_{7,8,9,10} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
@@ -13,7 +13,7 @@ fi
 
 inherit distutils-r1 ${SCM}
 
-DESCRIPTION="Debugger frontent for hackers"
+DESCRIPTION="multi view terminal debugging for gdb/lldb/vdb"
 HOMEPAGE="https://github.com/snare/voltron"
 SRC_URI=""
 
