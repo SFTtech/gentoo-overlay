@@ -105,6 +105,18 @@ src_prepare() {
 
 	sed -i 's@"https://packages.riot.im/desktop/update/"@null@g' ${S}/element.io/release/config.json
 	yarn install || die "yarn module installation failed"
+
+	# workaround for:
+	# https://github.com/nodejs/node-gyp/issues/2673
+	#
+	# gyp: name 'openssl_fips' is not defined while evaluating condition 'openssl_fips != ""' in binding.gyp while trying to load binding.gyp
+	# gyp ERR! configure error
+	# gyp ERR! stack Error: `gyp` failed with exit code: 1
+	# gyp ERR! stack     at ChildProcess.onCpExit (/tmp/portage/net-im/element-desktop-1.11.10/work/element-desktop-1.11.10/.hak/keytar/x86_64-unknown-linux-gnu/build/node_modules/node-gyp/lib/configure.js:259:16)
+	# gyp ERR! stack     at ChildProcess.emit (node:events:513:28)
+	# gyp ERR! stack     at ChildProcess._handle.onexit (node:internal/child_process:291:12)
+	#
+	npm install --openssl_fips='' || die "npm fips workaround failed"
 }
 
 
