@@ -47,9 +47,10 @@ IUSE=""
 REQUIRED_USE=""
 RESTRICT="network-sandbox"
 
-# maybe nodejs version needs to be limited according to these compatibilities:
-# https://github.com/node-gfx/node-canvas-prebuilt/releases
-# https://nodejs.org/en/download/releases/
+# <nodejs-17 seems to be required because
+# - electron uses node16-config files
+# - the build fails with openssl_fips being undefined, since node17+ no longer defines it.
+# see https://github.com/nodejs/node-gyp/issues/2750
 RDEPEND="
 	net-libs/nodejs
 	x11-libs/cairo

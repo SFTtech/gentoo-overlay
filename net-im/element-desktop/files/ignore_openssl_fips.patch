@@ -1,0 +1,22 @@
+--- a/include/node/common.gypi	2022-11-16 12:59:09.485683884 +0100
++++ b/include/node/common.gypi	2022-11-16 13:16:32.245949353 +0100
+@@ -30,6 +30,7 @@
+ 
+     'openssl_fips%': '',
+     'openssl_no_asm%': 0,
++    'openssl_product': '<(STATIC_LIB_PREFIX)openssl<(STATIC_LIB_SUFFIX)',
+ 
+     # Don't use ICU data file (icudtl.dat) from V8, we use our own.
+     'icu_use_data_file_flag%': 0,
+@@ -123,11 +124,6 @@
+         'obj_dir%': '<(PRODUCT_DIR)/obj.target',
+         'v8_base': '<(PRODUCT_DIR)/obj.target/tools/v8_gypfiles/libv8_snapshot.a',
+       }],
+-      ['openssl_fips != ""', {
+-        'openssl_product': '<(STATIC_LIB_PREFIX)openssl<(STATIC_LIB_SUFFIX)',
+-      }, {
+-        'openssl_product': '<(STATIC_LIB_PREFIX)openssl<(STATIC_LIB_SUFFIX)',
+-      }],
+       ['OS=="mac"', {
+         'clang%': 1,
+         'obj_dir%': '<(PRODUCT_DIR)/obj.target',

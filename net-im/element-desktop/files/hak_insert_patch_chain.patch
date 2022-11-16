@@ -1,0 +1,27 @@
+--- a/hak/keytar/build.ts	2022-11-16 13:53:20.727247977 +0100
++++ b/hak/keytar/build.ts	2022-11-16 13:53:22.857327151 +0100
+@@ -23,6 +23,24 @@
+ export default async function buildKeytar(hakEnv: HakEnv, moduleInfo: DependencyInfo): Promise<void> {
+     const env = hakEnv.makeGypEnv();
+ 
++    // patch gyp so it patches the node-headers file
++    // we have to do it here because node-gyp is fetched independently of the
++    // yarn install run in the ebuild's src_prepare phase wtf
++    console.log("Patching node-gyp to patch node headers in " + moduleInfo.moduleBuildDir);
++    await new Promise<void>((resolve, reject) => {
++        const proc = childProcess.spawn(
++            'sh',
++            ['-c', 'patch -p1 -i ${FILESDIR}/gyp_apply_patch.patch'],
++            {
++                stdio: 'inherit',
++                cwd: moduleInfo.moduleBuildDir,
++            },
++        );
++        proc.on('exit', code => {
++            code ? reject(code) : resolve();
++        });
++    });
++
+     console.log("Running yarn with env", env);
+     await new Promise<void>((resolve, reject) => {
+         const proc = childProcess.spawn(

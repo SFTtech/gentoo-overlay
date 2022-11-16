@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Foundation
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # NETWORK ACCESS
@@ -48,50 +48,41 @@ RESTRICT="network-sandbox"
 
 # get dependencies via:
 # readelf -a element-desktop | ag "Shared library" | ag -o '\[(.*)\]' | tr -d '[]' | while read lib; do qfile /usr/lib/$lib; done | cut -d: -f1 | sort | uniq
+# don't use ldd - it would show you transitive dependencies!
+#
 # libsecret is dlopen'd because of node-keytar
 RDEPEND="
 	!net-im/element-desktop-bin
-	app-accessibility/at-spi2-atk:2
+	=net-im/element-web-${PV}
 	app-crypt/libsecret
-	dev-libs/atk
-	dev-libs/expat
-	dev-libs/glib
-	dev-libs/nspr
-	dev-libs/nss
-	dev-libs/openssl
-	media-libs/alsa-lib
-	media-libs/fontconfig
-	media-libs/mesa
-	net-print/cups
-	sys-apps/dbus
-	x11-libs/cairo
-	x11-libs/gdk-pixbuf
-	x11-libs/gtk+:3
-	x11-libs/libX11
-	x11-libs/libXScrnSaver
-	x11-libs/libXcomposite
-	x11-libs/libXcursor
-	x11-libs/libXdamage
-	x11-libs/libXext
-	x11-libs/libXfixes
-	x11-libs/libXi
-	x11-libs/libXrandr
-	x11-libs/libXrender
-	x11-libs/libXtst
-	x11-libs/libdrm
-	x11-libs/libxcb
-	x11-libs/pango
-
 	native-extensions? (
 		dev-db/sqlcipher
 	)
 
-	=net-im/element-web-${PV}
+	app-accessibility/at-spi2-core
+	dev-libs/expat
+	dev-libs/glib
+	media-libs/alsa-lib
+	media-libs/mesa
+	net-print/cups
+	sys-apps/dbus
+	x11-libs/cairo
+	x11-libs/gtk+
+	x11-libs/libdrm
+	x11-libs/libX11
+	x11-libs/libxcb
+	x11-libs/libXcomposite
+	x11-libs/libXdamage
+	x11-libs/libXext
+	x11-libs/libXfixes
+	x11-libs/libxkbcommon
+	x11-libs/libXrandr
+	x11-libs/pango
 "
 DEPEND="
 	${RDEPEND}
 	sys-apps/yarn
-	>=net-libs/nodejs-14.17.0
+	net-libs/nodejs
 	native-extensions? (
 		virtual/rust
 	)
@@ -106,25 +97,18 @@ src_prepare() {
 	sed -i 's@"https://packages.riot.im/desktop/update/"@null@g' ${S}/element.io/release/config.json
 	yarn install || die "yarn module installation failed"
 
-	# workaround for:
-	# https://github.com/nodejs/node-gyp/issues/2673
-	#
-	# gyp: name 'openssl_fips' is not defined while evaluating condition 'openssl_fips != ""' in binding.gyp while trying to load binding.gyp
-	# gyp ERR! configure error
-	# gyp ERR! stack Error: `gyp` failed with exit code: 1
-	# gyp ERR! stack     at ChildProcess.onCpExit (/tmp/portage/net-im/element-desktop-1.11.10/work/element-desktop-1.11.10/.hak/keytar/x86_64-unknown-linux-gnu/build/node_modules/node-gyp/lib/configure.js:259:16)
-	# gyp ERR! stack     at ChildProcess.emit (node:events:513:28)
-	# gyp ERR! stack     at ChildProcess._handle.onexit (node:internal/child_process:291:12)
-	#
-	npm install --openssl_fips='' || die "npm fips workaround failed"
+	# workaround chain for https://github.com/nodejs/node-gyp/issues/2750
+	# we patch hak to patch gyp to patch node-headers.
+	# we need to do this sequentially since the nodejs clusterfuck downloads all these projects from the internet.
+	# maybe a simpler approach: let keytar depend on node-gyp:9 since that may have fixed the local-var problem?
+	eapply ${FILESDIR}/hak_insert_patch_chain.patch
 }
 
 
 src_compile() {
 	if use native-extensions; then
-		yarn run build:native || die "native extensions build failed"
+		yarn run "build:native" || die "native extensions build failed"
 	fi
-
 	yarn run build || die "build failed"
 }
 

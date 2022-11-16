@@ -1,0 +1,19 @@
+--- a/node_modules/node-gyp/gyp/gyp_main.py	2022-11-16 14:17:56.957243192 +0100
++++ b/node_modules/node-gyp/gyp/gyp_main.py	2022-11-16 14:20:42.203568020 +0100
+@@ -42,4 +42,16 @@
+ import gyp  # noqa: E402
+ 
+ if __name__ == "__main__":
++    # really ugly workaround fix for https://github.com/nodejs/node-gyp/issues/2750
++    # roughly the same as https://github.com/nodejs/node/pull/45076
++    savepwd = os.getcwd()
++
++    import glob
++    # go to the funny electron-headers directory in the homedir
++    os.chdir(os.environ["HOME"])
++    os.chdir(glob.glob(".electron-gyp/*/.")[0])
++    subprocess.run("patch -p1 -i ${FILESDIR}/ignore_openssl_fips.patch", shell=True)
++
++    os.chdir(savepwd)
++
+     sys.exit(gyp.script_main())
