@@ -89,6 +89,12 @@ src_prepare() {
 
 
 src_compile() {
+	# node:internal/crypto/hash:71
+	# this[kHandle] = new _Hash(algorithm, xofLen);
+	#                 ^
+	# Error: error:0308010C:digital envelope routines::unsupported
+	export NODE_OPTIONS=--openssl-legacy-provider
+
 	yarn run build || die "build failed"
 }
 
