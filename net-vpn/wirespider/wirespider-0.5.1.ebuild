@@ -40,7 +40,7 @@ CRATES="
 	block-buffer-0.10.3
 	boringtun-0.5.2
 	buffering-0.3.4
-	bumpalo-3.11.1
+	bumpalo-3.12.0
 	bytecodec-0.4.15
 	byteorder-1.4.3
 	bytes-1.3.0
@@ -184,7 +184,7 @@ CRATES="
 	remove_dir_all-0.5.3
 	ring-0.16.20
 	rustc-serialize-0.3.24
-	rustix-0.36.6
+	rustix-0.36.7
 	rustls-0.20.8
 	rustls-pemfile-1.0.2
 	rustversion-1.0.11
@@ -219,7 +219,7 @@ CRATES="
 	thread_local-1.1.4
 	tinyvec-1.6.0
 	tinyvec_macros-0.1.0
-	tokio-1.24.1
+	tokio-1.24.2
 	tokio-graceful-shutdown-0.12.1
 	tokio-io-timeout-1.2.0
 	tokio-macros-1.8.2
