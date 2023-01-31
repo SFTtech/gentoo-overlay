@@ -89,6 +89,16 @@ src_prepare() {
 
 
 src_compile() {
+	if has_version ">=dev-libs/openssl-3.0.0"; then
+		# node:internal/crypto/hash:71
+		# this[kHandle] = new _Hash(algorithm, xofLen);
+		#                 ^
+		# Error: error:0308010C:digital envelope routines::unsupported
+		#
+		# https://github.com/nodejs/node/commit/86d1c0cc6a5dcf57e413a1cc1c29203e87cf9a14
+		export NODE_OPTIONS=--openssl-legacy-provider
+	fi
+
 	yarn run build || die "build failed"
 }
 
