@@ -1,19 +1,18 @@
-# Copyright 2014-2020 Gentoo Foundation
+# Copyright 2014-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2 or later
 
-EAPI=6
-PYTHON_COMPAT=( python3_{6,7,8} )
+EAPI=8
+PYTHON_COMPAT=( python3_{8..11} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
 	EGIT_REPO_URI="https://github.com/SFTtech/${PN}.git"
 fi
 
-CMAKE_MIN_VERSION=3.8.0
-inherit cmake-utils python-single-r1 ${SCM}
+inherit cmake python-single-r1 ${SCM}
 
 DESCRIPTION="free as in freedom RTS engine for age of empires II TC"
-HOMEPAGE="http://openage.sft.mx https://github.com/SFTtech/openage"
+HOMEPAGE="http://openage.dev https://github.com/SFTtech/openage"
 
 if [[ ${PV} == *9999 ]] ; then
 	SRC_URI=""
@@ -26,14 +25,13 @@ fi
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="inotify tcmalloc profiling ncurses"
+IUSE="inotify tcmalloc debug ncurses backtrace"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="
 ${PYTHON_DEPS}
-dev-qt/qtcore:5
-dev-qt/qtdeclarative:5
-dev-qt/qtquickcontrols:5
+dev-qt/qtbase:6[gui,opengl]
+dev-qt/qtdeclarative:6
 dev-cpp/eigen
 dev-libs/nyan
 media-fonts/dejavu
@@ -43,27 +41,26 @@ media-libs/harfbuzz
 media-libs/libepoxy
 media-libs/libogg
 media-libs/libpng
-media-libs/libsdl2[X,opengl,video]
 media-libs/opus
 media-libs/opusfile
-media-libs/sdl2-image[png]
 virtual/opengl
 tcmalloc? ( dev-util/google-perftools )
-profiling? ( dev-util/google-perftools )
+debug? ( dev-util/google-perftools )
 ncurses? ( sys-libs/ncurses )
+backtrace? ( sys-libs/libbacktrace )
 $(python_gen_cond_dep '
-    dev-python/numpy[${PYTHON_MULTI_USEDEP}]
-    dev-python/pillow[${PYTHON_MULTI_USEDEP}]
-    dev-python/toml[${PYTHON_MULTI_USEDEP}]
-    dev-python/lz4[${PYTHON_MULTI_USEDEP}]
+	dev-python/numpy[${PYTHON_USEDEP}]
+	dev-python/pillow[${PYTHON_USEDEP}]
+	dev-python/toml[${PYTHON_USEDEP}]
+	dev-python/lz4[${PYTHON_USEDEP}]
 ')
 "
 DEPEND="${RDEPEND}
-|| ( >=sys-devel/clang-5.0.0 >=sys-devel/gcc-7.0.0 )
+|| ( >=sys-devel/clang-13.0.0 >=sys-devel/gcc-11.0.0 )
 $(python_gen_cond_dep '
-    dev-python/cython[${PYTHON_MULTI_USEDEP}]
-    dev-python/jinja[${PYTHON_MULTI_USEDEP}]
-    dev-python/pygments[${PYTHON_MULTI_USEDEP}]
+	dev-python/cython[${PYTHON_USEDEP}]
+	dev-python/jinja[${PYTHON_USEDEP}]
+	dev-python/pygments[${PYTHON_USEDEP}]
 ')
 "
 
@@ -72,11 +69,13 @@ src_configure() {
 	local mycmakeargs=(
 		-DWANT_INOTIFY="$(usex inotify True False)"
 		-DWANT_GPERFTOOLS_TCMALLOC="$(usex tcmalloc True False)"
-		-DWANT_GPERFTOOLS_PROFILER="$(usex profiling True False)"
+		-DWANT_GPERFTOOLS_PROFILER="$(usex debug True False)"
 		-DWANT_NCURSES="$(usex ncurses True False)"
+		-DWANT_BACKTRACE="$(usex backtrace True False)"
+		-DPython3_EXECUTABLE="${PYTHON}"
 	)
 
-	cmake-utils_src_configure
+	cmake_src_configure
 }
 
 
