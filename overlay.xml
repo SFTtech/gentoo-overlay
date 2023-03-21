@@ -6,7 +6,7 @@
 		<description>SFT Technologies gentoo overlay</description>
 		<homepage>https://github.com/SFTtech/gentoo-overlay</homepage>
 		<owner type="person">
-			<email>jj@stusta.net</email>
+			<email>jj@sft.lol</email>
 			<name>Jonas Jelten</name>
 		</owner>
 		<source type="git">git://github.com/SFTtech/gentoo-overlay.git</source>
