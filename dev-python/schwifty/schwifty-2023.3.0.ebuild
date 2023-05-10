@@ -29,6 +29,9 @@ SLOT="0"
 IUSE=""
 REQUIRED_USE=""
 
-RDEPEND=""
+RDEPEND="
+dev-python/iso3166[${PYTHON_USEDEP}]
+dev-python/pycountry[${PYTHON_USEDEP}]
+"
 DEPEND="
 ${RDEPEND}"
