@@ -16,7 +16,7 @@
 # this avoids disabling `network-sandbox` globally.
 
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="A glossy Matrix collaboration client for desktop"
 HOMEPAGE="https://element.io"
@@ -37,7 +37,7 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-inherit eutils desktop xdg-utils ${SCM}
+inherit desktop xdg-utils ${SCM}
 
 LICENSE="Apache-2.0 MIT BSD"
 SLOT="0"
