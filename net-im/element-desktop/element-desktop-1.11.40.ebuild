@@ -96,12 +96,6 @@ src_prepare() {
 
 	sed -i 's@"https://packages.riot.im/desktop/update/"@null@g' ${S}/element.io/release/config.json
 	yarn install || die "yarn module installation failed"
-
-	# workaround chain for https://github.com/nodejs/node-gyp/issues/2750
-	# we patch hak to patch gyp to patch node-headers.
-	# we need to do this sequentially since the nodejs clusterfuck downloads all these projects from the internet.
-	# maybe a simpler approach: let keytar depend on node-gyp:9 since that may have fixed the local-var problem?
-	eapply ${FILESDIR}/hak_insert_patch_chain.patch
 }
 
 
