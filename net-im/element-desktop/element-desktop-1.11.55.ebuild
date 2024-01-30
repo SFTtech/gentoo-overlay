@@ -108,15 +108,32 @@ src_compile() {
 
 
 src_install() {
+	# main executable
+	cat <<-EOF > "${S}/${PN}" || die
+	#!/bin/bash
+
+	# support wayland and x11
+	exec ../../opt/${PN}/${PN} --ozone-platform-hint=auto \$@
+	EOF
+	doexe "${S}/${PN}"
+
 	dodoc LICENSE*
 	insinto opt/${PN}
 	exeinto opt/${PN}
 
 	pushd ${S}/dist/linux-unpacked
 	doins -r locales resources
-	doins *.{pak,bin,dat}
+	doins *.{pak,bin,dat,json}
 	# `ldd element-desktop` says only libffmpeg.so is needed
+	# but more libs are dlopened
 	doins libffmpeg.so
+	doins libGLESv2.so
+	doins libEGL.so
+	doins libvk_swiftshader.so
+	doins libvulkan.so.1
+
+	doexe chrome-sandbox
+	doexe chrome_crashpad_handler
 	doexe ${PN}
 	popd
 
@@ -130,9 +147,6 @@ src_install() {
 
 	# let's enable lab features!
 	sed -ie 's/    "showLabsSettings": false/    "showLabsSettings": true/' $D/etc/$PN/config.json
-
-	# symlink to main binary
-	dosym ../../opt/${PN}/${PN} usr/bin/${PN}
 
 	make_desktop_entry "/usr/bin/${PN}" Element element InstantMessaging
 
