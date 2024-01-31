@@ -127,11 +127,7 @@ src_install() {
 	doins *.{pak,bin,dat,json}
 	# `ldd element-desktop` says only libffmpeg.so is needed
 	# but more libs are dlopened
-	doins libffmpeg.so
-	doins libGLESv2.so
-	doins libEGL.so
-	doins libvk_swiftshader.so
-	doins libvulkan.so.1
+	doins lib*.so*
 
 	doexe chrome-sandbox
 	doexe chrome_crashpad_handler
