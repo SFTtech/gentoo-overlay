@@ -108,19 +108,20 @@ src_compile() {
 
 
 src_install() {
-	# main executable
+	dodoc LICENSE*
+	insinto opt/${PN}
+	exeinto opt/${PN}
+
+	# main executable launcher
 	cat <<-EOF > "${S}/${PN}" || die
 	#!/bin/bash
 
 	# support wayland and x11
 	exec ../../opt/${PN}/${PN} --ozone-platform-hint=auto \$@
 	EOF
-	doexe "${S}/${PN}"
+	dobin "${S}/${PN}"
 
-	dodoc LICENSE*
-	insinto opt/${PN}
-	exeinto opt/${PN}
-
+	# electron files
 	pushd ${S}/dist/linux-unpacked
 	doins -r locales resources
 	doins *.{pak,bin,dat,json}
