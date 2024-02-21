@@ -1,7 +1,7 @@
-# Copyright 2023-2023 Gentoo Authors
+# Copyright 2023-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2 or later
 
-# WWAN Linux support for Fibocom FM350 and Fibocom L860R+
+# WWAN Linux support for Fibocom FM350 5G and Fibocom L860R+ LTE modems
 #
 # https://download.lenovo.com/pccbbs/mobiles_pdf/wwan-enablement-on-Linux.pdf
 # https://pcsupport.lenovo.com/us/en/downloads/ds563599-fibocom-wireless-wan-l860-gl-16-fcc-unlock-and-sar-config-tool-for-linux-thinkpad
@@ -11,8 +11,8 @@ EAPI=8
 
 inherit systemd
 
-DESCRIPTION="FCC unlock for Fibocom L860R+ and Fibocom FM350 5G"
-HOMEPAGE=""
+DESCRIPTION="FCC unlock for Fibocom L860R+ LTE and Fibocom FM350 5G modem"
+HOMEPAGE="https://download.lenovo.com/pccbbs/mobiles_pdf/wwan-enablement-on-Linux.pdf"
 
 if [[ ${PV} == *9999 ]] ; then
 	SRC_URI=""
