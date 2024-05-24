@@ -3,14 +3,13 @@
 
 EAPI=8
 
-DISTUTILS_USE_PEP517=hatchling
-PYTHON_COMPAT=( python3_{9..11} )
+DISTUTILS_USE_PEP517=pdm-backend
+PYTHON_COMPAT=( python3_{11..12} )
 
-inherit distutils-r1
+inherit distutils-r1 pypi
 
 DESCRIPTION="High performance, easy to learn, fast to code, ready for production"
 HOMEPAGE="https://fastapi.tiangolo.com/ https://github.com/tiangolo/fastapi"
-SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT=0
@@ -19,6 +18,6 @@ KEYWORDS="~amd64 ~x86"
 RESTRICT="test"
 
 RDEPEND="
-	<dev-python/pydantic-2.0.0[${PYTHON_USEDEP}]
-	=dev-python/starlette-0.26*[${PYTHON_USEDEP}]
+	<dev-python/pydantic-3.0.0[${PYTHON_USEDEP}]
+	<dev-python/starlette-0.38[${PYTHON_USEDEP}]
 "
