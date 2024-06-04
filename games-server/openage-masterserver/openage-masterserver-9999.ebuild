@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=6
+EAPI=8
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
