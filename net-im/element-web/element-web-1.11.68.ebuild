@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Foundation
+# Copyright 1999-2024 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 # NETWORK ACCESS
@@ -47,10 +47,6 @@ IUSE=""
 REQUIRED_USE=""
 RESTRICT="network-sandbox"
 
-# <nodejs-17 seems to be required because
-# - electron uses node16-config files
-# - the build fails with openssl_fips being undefined, since node17+ no longer defines it.
-# see https://github.com/nodejs/node-gyp/issues/2750
 RDEPEND="
 	net-libs/nodejs
 	x11-libs/cairo
@@ -64,14 +60,15 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	default
-	yarn install || die "yarn module installation failed"
+
+	yarn install --no-fund || die "yarn module installation failed"
 
 	if [[ ${PV} == "9999" ]]; then
 		pushd ${S}/node_modules/
 		rm -rf matrix-js-sdk
 		git clone https://github.com/matrix-org/matrix-js-sdk --branch develop
 		pushd matrix-js-sdk
-		yarn install
+		yarn install --no-fund
 		popd
 		popd
 	fi
@@ -81,7 +78,7 @@ src_prepare() {
 		rm -rf matrix-react-sdk
 		git clone https://github.com/matrix-org/matrix-react-sdk --branch develop
 		pushd matrix-react-sdk
-		yarn install
+		yarn install --no-fund
 		popd
 		popd
 	fi
@@ -89,17 +86,7 @@ src_prepare() {
 
 
 src_compile() {
-	if has_version ">=dev-libs/openssl-3.0.0"; then
-		# node:internal/crypto/hash:71
-		# this[kHandle] = new _Hash(algorithm, xofLen);
-		#                 ^
-		# Error: error:0308010C:digital envelope routines::unsupported
-		#
-		# https://github.com/nodejs/node/commit/86d1c0cc6a5dcf57e413a1cc1c29203e87cf9a14
-		export NODE_OPTIONS=--openssl-legacy-provider
-	fi
-
-	yarn run build || die "build failed"
+	yarn --offline build || die "build failed"
 }
 
 

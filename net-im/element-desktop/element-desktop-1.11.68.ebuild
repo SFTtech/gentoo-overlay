@@ -95,7 +95,7 @@ src_prepare() {
 	default
 
 	sed -i 's@"https://packages.riot.im/desktop/update/"@null@g' ${S}/element.io/release/config.json
-	yarn install || die "yarn module installation failed"
+	yarn install --no-fund || die "yarn module installation failed"
 }
 
 
