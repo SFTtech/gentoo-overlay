@@ -22,6 +22,11 @@ else
 fi
 
 ## hardcoded versions
+
+# /Meta/CMake/public_suffix.cmake
+# they use the master branch, but we want a reproducible build
+PSL_VERSION=6a1ef4345e2e8a54542fa1e58087797ac118fdd7
+
 # /Meta/CMake/time_zone_data.cmake
 TZDB_VERSION=2024a
 
@@ -37,7 +42,7 @@ UCD_VERSION_MINOR=${UCD_VERSION%.*}
 
 SRC_URI="
 ${SRC_URI}
-https://raw.githubusercontent.com/publicsuffix/list/master/public_suffix_list.dat -> ${P}-public_suffix_list.dat
+https://github.com/publicsuffix/list/raw/${PSL_VERSION}/public_suffix_list.dat -> ${P}-public_suffix_list-${PSL_VERSION}.dat
 https://www.unicode.org/Public/${UCD_VERSION}/ucd/UCD.zip -> ${P}-UCD-${UCD_VERSION}.zip
 https://www.unicode.org/Public/emoji/${UCD_VERSION_MINOR}/emoji-test.txt -> ${P}-emoji-test-${UCD_VERSION}.txt
 https://www.unicode.org/Public/idna/${UCD_VERSION}/IdnaMappingTable.txt -> ${P}-IdnaMappingTable-${UCD_VERSION_MINOR}.txt
@@ -99,7 +104,7 @@ src_prepare() {
 	ln -s /etc/ssl/certs/ca-certificates.crt $cachedir/CACERT/cacert-${CACERT_VERSION}.pem
 	echo "$CACERT_VERSION" > $cachedir/CACERT/version.txt
 
-	cp_cachefile "${P}-public_suffix_list.dat" PublicSuffix/public_suffix_list.dat
+	cp_cachefile "${P}-public_suffix_list-${PSL_VERSION}.dat" PublicSuffix/public_suffix_list.dat
 
 	extract_cachefile "${P}-tzdata-${TZDB_VERSION}.tar.gz" TZDB/
 	echo "$TZDB_VERSION" > $cachedir/TZDB/version.txt
