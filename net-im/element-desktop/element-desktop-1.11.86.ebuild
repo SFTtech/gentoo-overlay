@@ -37,7 +37,9 @@ else
 	KEYWORDS="~amd64 ~x86"
 fi
 
-inherit desktop xdg-utils ${SCM}
+RUST_OPTIONAL=1
+
+inherit desktop xdg-utils rust ${SCM}
 
 LICENSE="Apache-2.0 MIT BSD"
 SLOT="0"
@@ -84,7 +86,7 @@ DEPEND="
 	sys-apps/yarn
 	net-libs/nodejs
 	native-extensions? (
-		virtual/rust
+		${RUST_DEPEND}
 	)
 "
 
