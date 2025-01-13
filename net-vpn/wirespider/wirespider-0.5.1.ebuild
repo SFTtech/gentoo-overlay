@@ -291,7 +291,9 @@ CRATES="
 	zeroize_derive-1.3.3
 "
 
-inherit cargo ${SCM}
+RUST_USEDEP='rustfmt'
+
+inherit rust cargo ${SCM}
 
 DESCRIPTION="Wirespider allows distributing wireguard tunnels and routes"
 # Double check the homepage as the cargo_metadata crate
@@ -306,8 +308,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-BDEPEND=">=virtual/rust-1.59[rustfmt]
-	dev-libs/protobuf"
+BDEPEND="dev-libs/protobuf"
 DEPEND=""
 RDEPEND="acct-user/wirespider"
 
