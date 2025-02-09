@@ -1,4 +1,4 @@
-# Copyright 2023-2024 Gentoo Authors
+# Copyright 2023-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2 or later
 
 # WWAN Linux support for Fibocom FM350 5G and Fibocom L860R+ LTE modems
@@ -14,14 +14,14 @@ inherit systemd
 DESCRIPTION="FCC unlock for Fibocom L860R+ LTE and Fibocom FM350 5G modem"
 HOMEPAGE="https://download.lenovo.com/pccbbs/mobiles_pdf/wwan-enablement-on-Linux.pdf"
 
+ZIP_VER=04
+INNER_VER=2.1
+
 if [[ ${PV} == *9999 ]] ; then
 	SRC_URI=""
 	KEYWORDS=""
 else
-	# insert just the major version - let's see how the zip files will be named in the future...
-	SRC_URI="
-	https://download.lenovo.com/pccbbs/mobiles/n3xwp0${PV%.*}w.zip -> ${P}.zip
-	"
+	SRC_URI="https://download.lenovo.com/pccbbs/mobiles/n3xwp${ZIP_VER}w.zip -> ${P}.zip"
 	KEYWORDS="~amd64 ~x86"
 fi
 
@@ -34,13 +34,17 @@ REQUIRED_USE=""
 RDEPEND="net-misc/modemmanager[mbim]"
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/lenovo_wwan_fccunlock_package"
+S="${WORKDIR}/lenovo-wwan-unlock"
 
 src_unpack() {
 	# the outer lenovo zip file
 	unpack ${A}
 	# the actual fccunlock_package file
-	unpack ${WORKDIR}/lenovo_wwan_fccunlock_package_${PV}.tar.gz
+	unpack ${WORKDIR}/lenovo-wwan-unlock_ver${INNER_VER}.tar.gz
+
+	cd $S
+	unpack $S/fcc-unlock.d.tar.gz
+	unpack $S/sar_config_files.tar.gz
 }
 
 src_configure() {
@@ -52,9 +56,13 @@ src_install() {
 	dolib.so libmodemauth.so
 	dolib.so libconfigserviceR+.so
 	dolib.so libconfigservice350.so
+	dolib.so libmbimtools.so
 
 	exeinto /opt/fcc_lenovo
 	doexe DPR_Fcc_unlock_service
+
+	insinto /opt/fcc_lenovo
+	doins -r sar_config_files/
 
 	# apparently the "configservice" is not needed?
 	#systemd_dounit lenovo-cfgservice.service
