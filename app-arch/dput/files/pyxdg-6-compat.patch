@@ -1,0 +1,44 @@
+diff --git i/dput/configfile.py w/dput/configfile.py
+index b644365..af26be0 100644
+--- i/dput/configfile.py
++++ w/dput/configfile.py
+@@ -11,7 +11,7 @@ import collections
+ import os.path
+ import sys
+ 
+-import xdg
++import xdg.BaseDirectory
+ 
+ 
+ class ConfigurationError(RuntimeError):
+@@ -21,7 +21,7 @@ class ConfigurationError(RuntimeError):
+ default_config_paths = collections.OrderedDict([
+         ('global', os.path.join(os.path.sep, "etc", "dput.cf")),
+         ('user_xdg', os.path.join(
+-            xdg.xdg_config_home(), "dput", "dput.cf")),
++            xdg.BaseDirectory.xdg_config_home, "dput", "dput.cf")),
+         ('user_home', os.path.join(
+             os.path.expanduser("~"), ".dput.cf")),
+ ])
+diff --git i/test/test_configfile.py w/test/test_configfile.py
+index d6a4c7e..1a6d296 100644
+--- i/test/test_configfile.py
++++ w/test/test_configfile.py
+@@ -21,7 +21,7 @@ import unittest.mock
+ import testscenarios
+ import testtools
+ import testtools.matchers
+-import xdg
++import xdg.BaseDirectory
+ 
+ import dput.configfile
+ import dput.dput
+@@ -78,7 +78,7 @@ def make_config_file_scenarios(config_file_paths=None):
+     global_config_file_path = config_file_paths.get(
+             'global', os.path.join(os.path.sep, "etc", "dput.cf"))
+     user_xdg_config_file_path = config_file_paths.get(
+-            'user_xdg', os.path.join(xdg.xdg_config_home(), "dput", "dput.cf"))
++            'user_xdg', os.path.join(xdg.BaseDirectory.xdg_config_home, "dput", "dput.cf"))
+     user_home_config_file_path = config_file_paths.get(
+             'user_home', os.path.join(os.path.expanduser("~"), ".dput.cf"))
+ 

@@ -1,0 +1,15 @@
+diff --git i/setup.py w/setup.py
+index 334269f..98278ec 100644
+--- i/setup.py
++++ w/setup.py
+@@ -81,8 +81,8 @@ setup_kwargs = dict(
+             ],
+         entry_points={
+             'console_scripts': [
+-                "execute-dput = dput.dput:main",
+-                "execute-dcut = dput.dcut:dcut",
++                "dput = dput.dput:main",
++                "dcut = dput.dcut:dcut",
+                 ],
+             },
+ 
