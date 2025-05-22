@@ -118,8 +118,16 @@ src_install() {
 	cat <<-EOF > "${S}/${PN}" || die
 	#!/bin/bash
 
+	if [[ "\$DESKTOP_SESSION" == "sway" ]]; then
+		# element-desktop/src/store.ts complains unsupported_keyring
+		# https://www.electronjs.org/docs/latest/api/safe-storage#safestoragegetselectedstoragebackend-linux
+		# TODO: there has to be a better way to select which keyring one wants to use
+		#       instead of relying on the desktop session...
+		keyring="--password-store=gnome-libsecret"
+	fi
+
 	# support wayland and x11
-	exec ../../opt/${PN}/${PN} --ozone-platform-hint=auto \$@
+	exec ../../opt/${PN}/${PN} --ozone-platform-hint=auto \$keyring \$@
 	EOF
 	dobin "${S}/${PN}"
 
