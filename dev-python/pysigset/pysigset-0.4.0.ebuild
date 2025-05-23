@@ -4,13 +4,13 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{7,8,9,10} )
+PYTHON_COMPAT=( python3_{11..14} )
 
-inherit distutils-r1
+DISTUTILS_USE_PEP517=setuptools
+inherit distutils-r1 pypi
 
 DESCRIPTION="Boilerplate framework for plugin, config and log management"
 HOMEPAGE="https://pypi.python.org/pypi/pysigset https://github.com/ossobv/pysigset"
-SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-3+"
 SLOT="0"
