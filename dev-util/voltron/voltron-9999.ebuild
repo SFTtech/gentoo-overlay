@@ -2,15 +2,16 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python3_{7,8,9,10} )
+PYTHON_COMPAT=( python3_{11..14} )
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
 	EGIT_REPO_URI="https://github.com/snare/${PN}.git"
 fi
 
+DISTUTILS_USE_PEP517=setuptools
 inherit distutils-r1 ${SCM}
 
 DESCRIPTION="multi view terminal debugging for gdb/lldb/vdb"
