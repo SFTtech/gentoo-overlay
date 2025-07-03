@@ -105,7 +105,7 @@ src_compile() {
 	if use native-extensions; then
 		yarn run "build:native" || die "native extensions build failed"
 	fi
-	yarn run build || die "build failed"
+	yarn run build --linux --dir || die "build failed"
 }
 
 
