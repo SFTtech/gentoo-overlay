@@ -10,10 +10,10 @@ MY_PN="pylsp-rope"
 
 inherit distutils-r1
 
-DESCRIPTION="Mypy plugin for the Python LSP Server"
+DESCRIPTION="Rope plugin for the Python LSP Server"
 HOMEPAGE="
-	https://github.com/python-lsp/pylsp-mypy
-	https://pypi.org/project/pylsp-mypy/
+	https://github.com/python-rope/pylsp-rope
+	https://pypi.org/project/pylsp-rope/
 "
 SRC_URI="
 	https://github.com/python-rope/${MY_PN}/archive/refs/tags/${PV}.tar.gz
