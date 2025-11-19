@@ -1,7 +1,7 @@
 # Copyright 2022-2022 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2 or later
 
-EAPI=7
+EAPI=8
 
 if [[ ${PV} == *9999 ]] ; then
 	SCM="git-r3"
