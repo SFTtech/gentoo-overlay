@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="Launcher for ARMA3 with mod support"
 HOMEPAGE="https://github.com/muttleyxd/arma3-unix-launcher"
@@ -9,7 +9,7 @@ SRC_URI="https://github.com/muttleyxd/arma3-unix-launcher/archive/commit-${PV}.t
 
 PATCHES=(
 	"${FILESDIR}/fix-argparse.patch"
-	"${FILESDIR}/use-system-libfmt.patch"
+	"${FILESDIR}/only-system-libs.patch"
 )
 
 inherit cmake
@@ -22,11 +22,14 @@ IUSE=""
 S="${WORKDIR}/${PN}-commit-${PV}"
 
 DEPEND="
-	dev-libs/pugixml
+	dev-cpp/argparse
+	dev-cpp/curlpp
+	dev-cpp/doctest
+	dev-cpp/nlohmann_json
+	dev-cpp/trompeloeil
 	dev-libs/libfmt
 	dev-libs/pugixml
-	dev-cpp/argparse
-	dev-cpp/nlohmann_json
+	dev-libs/spdlog
 	>=dev-qt/qtwidgets-5.9:5
 	>=dev-qt/qtsvg-5.9:5
 	>=dev-qt/qtcore-5.9:5

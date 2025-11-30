@@ -1,0 +1,14 @@
+diff --git i/cmake/external_dependencies.cmake w/cmake/external_dependencies.cmake
+index 76648b2..851b144 100644
+--- i/cmake/external_dependencies.cmake
++++ w/cmake/external_dependencies.cmake
+@@ -21,6 +21,9 @@ function(setup_library SOURCE_TO_TEST)
+         return()
+     endif()
+ 
++    message(FATAL_ERROR "system library ${LIB_SETUP_NAME} not found")
++    return()
++
+     if (NOT LIB_SETUP_GIT_TAG)
+         set(LIB_SETUP_GIT_TAG master)
+     endif()
