@@ -48,7 +48,7 @@ REQUIRED_USE=""
 RESTRICT="network-sandbox"
 
 RDEPEND="
-	net-libs/nodejs
+	>=net-libs/nodejs-22.18
 	x11-libs/cairo
 	x11-libs/pango
 	media-libs/fontconfig
